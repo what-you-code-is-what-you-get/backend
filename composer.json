@@ -20,6 +20,7 @@
         "drupal/core-project-message": "^11.0",
         "drupal/core-recommended": "^11.0",
         "drupal/gin": "^3.0@rc",
+        "drupal/gin_login": "^2.1",
         "drupal/gin_toolbar": "^1.0@rc",
         "drupal/twig_tweak": "^3.4",
         "drush/drush": "^13.3",
