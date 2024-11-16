@@ -1,0 +1,21 @@
+uuid: a0d3a432-67dd-4343-8210-cf2649cda27f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email_checkbox
+    - node.type.challenge
+id: node.challenge.field_email_checkbox
+field_name: field_email_checkbox
+entity_type: node
+bundle: challenge
+label: 'Collect Email address'
+description: 'If Game mode is Conference mode, do you want to collect Email address from participants?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

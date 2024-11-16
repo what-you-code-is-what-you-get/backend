@@ -4,9 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.challenge.field_assets
+    - field.field.node.challenge.field_email_checkbox
+    - field.field.node.challenge.field_game_mode
     - field.field.node.challenge.field_game_pin
     - field.field.node.challenge.field_instructions
+    - field.field.node.challenge.field_phone_checkbox
     - field.field.node.challenge.field_reference_image
+    - field.field.node.challenge.field_time
     - node.type.challenge
   module:
     - media_library
@@ -19,16 +23,29 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 4
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   field_assets:
     type: media_library_widget
-    weight: 26
+    weight: 4
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_email_checkbox:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_game_mode:
+    type: options_buttons
+    weight: 5
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_instructions:
     type: text_textarea
@@ -38,6 +55,13 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_phone_checkbox:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_reference_image:
     type: media_library_widget
     weight: 1
@@ -45,15 +69,22 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
+  field_time:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 11
     region: content
     settings:
       display_label: true
@@ -68,7 +99,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 8
     region: content
     settings:
       match_operator: CONTAINS

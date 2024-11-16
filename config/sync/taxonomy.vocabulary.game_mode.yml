@@ -1,0 +1,9 @@
+uuid: 758b8548-11a0-4a25-95d3-4f4b082e25a0
+langcode: en
+status: true
+dependencies: {  }
+name: 'Game mode'
+vid: game_mode
+description: null
+weight: 0
+new_revision: false

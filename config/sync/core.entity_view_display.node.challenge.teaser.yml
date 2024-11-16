@@ -5,9 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.challenge.field_assets
+    - field.field.node.challenge.field_email_checkbox
+    - field.field.node.challenge.field_game_mode
     - field.field.node.challenge.field_game_pin
     - field.field.node.challenge.field_instructions
+    - field.field.node.challenge.field_phone_checkbox
     - field.field.node.challenge.field_reference_image
+    - field.field.node.challenge.field_time
     - node.type.challenge
   module:
     - user
@@ -23,6 +27,10 @@ content:
     region: content
 hidden:
   field_assets: true
+  field_email_checkbox: true
+  field_game_mode: true
   field_game_pin: true
   field_instructions: true
+  field_phone_checkbox: true
   field_reference_image: true
+  field_time: true

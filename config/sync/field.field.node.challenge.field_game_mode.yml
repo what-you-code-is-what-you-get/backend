@@ -1,0 +1,29 @@
+uuid: ec87eb74-5b9a-4344-bc8f-b78308f30e44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_game_mode
+    - node.type.challenge
+    - taxonomy.vocabulary.game_mode
+id: node.challenge.field_game_mode
+field_name: field_game_mode
+entity_type: node
+bundle: challenge
+label: 'Game mode'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      game_mode: game_mode
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
