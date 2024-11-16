@@ -1,0 +1,85 @@
+uuid: ab4ab879-d3c2-4d27-829f-9bbd6e4d5b9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.submission.field_challenge_id
+    - field.field.node.submission.field_email
+    - field.field.node.submission.field_name
+    - field.field.node.submission.field_personvernerklaering
+    - field.field.node.submission.field_phone
+    - field.field.node.submission.field_score
+    - field.field.node.submission.field_value
+    - node.type.submission
+  module:
+    - text
+    - user
+id: node.submission.default
+targetEntityType: node
+bundle: submission
+mode: default
+content:
+  field_challenge_id:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_personvernerklaering:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_phone:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_score:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_value:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

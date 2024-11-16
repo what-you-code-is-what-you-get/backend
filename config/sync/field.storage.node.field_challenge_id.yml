@@ -1,0 +1,19 @@
+uuid: 38720806-f3e3-4d2d-afcc-28d7cc52c2ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_challenge_id
+field_name: field_challenge_id
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

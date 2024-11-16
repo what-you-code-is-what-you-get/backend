@@ -1,0 +1,21 @@
+uuid: 0a0da9a7-dca5-43ff-80a4-36d5a2707f7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_personvernerklaering
+    - node.type.submission
+id: node.submission.field_personvernerklaering
+field_name: field_personvernerklaering
+entity_type: node
+bundle: submission
+label: Personvernerklæring
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

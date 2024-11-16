@@ -1,0 +1,34 @@
+uuid: faa47921-ceb3-4415-88c3-386ee25f19ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.submission.field_challenge_id
+    - field.field.node.submission.field_email
+    - field.field.node.submission.field_name
+    - field.field.node.submission.field_personvernerklaering
+    - field.field.node.submission.field_phone
+    - field.field.node.submission.field_score
+    - field.field.node.submission.field_value
+    - node.type.submission
+  module:
+    - user
+id: node.submission.teaser
+targetEntityType: node
+bundle: submission
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_challenge_id: true
+  field_email: true
+  field_name: true
+  field_personvernerklaering: true
+  field_phone: true
+  field_score: true
+  field_value: true

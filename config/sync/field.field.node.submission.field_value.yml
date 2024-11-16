@@ -1,0 +1,24 @@
+uuid: de9c55e2-78e4-4501-b99d-a836a218e036
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_value
+    - filter.format.full_html
+    - node.type.submission
+  module:
+    - text
+id: node.submission.field_value
+field_name: field_value
+entity_type: node
+bundle: submission
+label: Value
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long
