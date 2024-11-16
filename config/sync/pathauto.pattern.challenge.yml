@@ -1,0 +1,22 @@
+uuid: bf20ea9a-bda7-4046-97f5-90776d4af1a3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: challenge
+label: Challenge
+type: 'canonical_entities:node'
+pattern: 'challenge/[node:nid]'
+selection_criteria:
+  a287b905-d1cc-4b49-a860-d73aea91e371:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: a287b905-d1cc-4b49-a860-d73aea91e371
+    context_mapping:
+      node: node
+    bundles:
+      challenge: challenge
+selection_logic: and
+weight: -5
+relationships: {  }
