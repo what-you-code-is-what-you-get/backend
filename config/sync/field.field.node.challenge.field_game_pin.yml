@@ -1,0 +1,19 @@
+uuid: a5d56ef0-2aa8-45cf-bfac-50efe99a2e89
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_game_pin
+    - node.type.challenge
+id: node.challenge.field_game_pin
+field_name: field_game_pin
+entity_type: node
+bundle: challenge
+label: 'Game pin'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

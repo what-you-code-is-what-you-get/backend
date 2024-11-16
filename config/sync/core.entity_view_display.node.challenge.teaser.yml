@@ -1,0 +1,28 @@
+uuid: 70300776-4f8e-4c3f-9f59-8e748ef9a456
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.challenge.field_assets
+    - field.field.node.challenge.field_game_pin
+    - field.field.node.challenge.field_instructions
+    - field.field.node.challenge.field_reference_image
+    - node.type.challenge
+  module:
+    - user
+id: node.challenge.teaser
+targetEntityType: node
+bundle: challenge
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_assets: true
+  field_game_pin: true
+  field_instructions: true
+  field_reference_image: true

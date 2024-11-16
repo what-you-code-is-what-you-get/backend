@@ -1,0 +1,57 @@
+uuid: 68f6d8c3-1ca7-4964-aeb9-71d08ecb592f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.challenge.field_assets
+    - field.field.node.challenge.field_game_pin
+    - field.field.node.challenge.field_instructions
+    - field.field.node.challenge.field_reference_image
+    - node.type.challenge
+  module:
+    - text
+    - user
+id: node.challenge.default
+targetEntityType: node
+bundle: challenge
+mode: default
+content:
+  field_assets:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_game_pin:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_instructions:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_reference_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

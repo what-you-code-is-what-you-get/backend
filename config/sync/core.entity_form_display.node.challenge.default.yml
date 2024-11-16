@@ -1,0 +1,82 @@
+uuid: a04b1e2d-a34a-4471-8e0a-411aa7f454e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.challenge.field_assets
+    - field.field.node.challenge.field_game_pin
+    - field.field.node.challenge.field_instructions
+    - field.field.node.challenge.field_reference_image
+    - node.type.challenge
+  module:
+    - media_library
+    - path
+    - text
+id: node.challenge.default
+targetEntityType: node
+bundle: challenge
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_assets:
+    type: media_library_widget
+    weight: 26
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_instructions:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_reference_image:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_game_pin: true
+  promote: true
+  sticky: true

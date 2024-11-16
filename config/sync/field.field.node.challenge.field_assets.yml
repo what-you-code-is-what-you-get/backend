@@ -1,0 +1,29 @@
+uuid: a87f6af6-515c-4f7c-bbf5-cee946d217be
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_assets
+    - media.type.image
+    - node.type.challenge
+id: node.challenge.field_assets
+field_name: field_assets
+entity_type: node
+bundle: challenge
+label: Assets
+description: 'Upload images that are needed for the challenge'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,18 @@
+uuid: c9a54137-d77b-43f0-b518-ac1576666ae5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.challenge
+id: node.challenge.title
+field_name: title
+entity_type: node
+bundle: challenge
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
