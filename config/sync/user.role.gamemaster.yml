@@ -1,31 +1,28 @@
-uuid: a3bc00d5-c290-45a6-8cb3-df0cf5ac9212
+uuid: dee284f3-65c2-465d-94fb-b08802d79101
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.challenge
   module:
-    - comment
     - contextual
     - file
     - node
-    - path
     - system
     - toolbar
-_core:
-  default_config_hash: e_wG1u7SrGaJbY2-Szgbgl-c8T3kdirU3uTNq2c_QJQ
-id: content_editor
-label: 'Content editor'
-weight: 2
-is_admin: false
+id: gamemaster
+label: Gamemaster
+weight: -7
+is_admin: null
 permissions:
   - 'access administration pages'
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
   - 'access toolbar'
-  - 'administer url aliases'
-  - 'create url aliases'
-  - 'delete own files'
-  - 'edit own comments'
+  - 'create challenge content'
+  - 'delete own challenge content'
+  - 'edit own challenge content'
   - 'revert all revisions'
   - 'view all revisions'
   - 'view own unpublished content'
