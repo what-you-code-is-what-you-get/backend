@@ -47,6 +47,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_game_pin:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_instructions:
     type: text_textarea
     weight: 2
@@ -108,6 +116,5 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
-  field_game_pin: true
   promote: true
   sticky: true
