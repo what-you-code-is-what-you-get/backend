@@ -19,12 +19,16 @@
         "drupal/core-composer-scaffold": "^11.0",
         "drupal/core-project-message": "^11.0",
         "drupal/core-recommended": "^11.0",
+        "drupal/devel": "^5.3",
         "drupal/gin": "^3.0@rc",
         "drupal/gin_login": "^2.1",
         "drupal/gin_toolbar": "^1.0@rc",
         "drupal/jsonapi_extras": "^3.26",
         "drupal/pathauto": "^1.13",
         "drush/drush": "^13.3"
+    },
+    "require-dev": {
+        "kint-php/kint": "^6.0"
     },
     "conflict": {
         "drupal/drupal": "*"
