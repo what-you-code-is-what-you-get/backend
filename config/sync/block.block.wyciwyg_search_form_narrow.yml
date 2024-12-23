@@ -1,15 +1,15 @@
-uuid: da3f2128-3cfb-4591-9fe2-9a28be2f6f72
+uuid: 75db7936-ec9d-4395-86e1-51f2de5a1b42
 langcode: en
 status: true
 dependencies:
   module:
     - search
   theme:
-    - olivero
+    - wyciwyg
 _core:
   default_config_hash: yEBET0cqDbk8dkWzaJw-8CKft0961VBflsISoSR6Lj8
-id: olivero_search_form_narrow
-theme: olivero
+id: wyciwyg_search_form_narrow
+theme: wyciwyg
 region: primary_menu
 weight: -4
 provider: null

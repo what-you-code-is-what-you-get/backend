@@ -1,0 +1,22 @@
+uuid: f79ced00-7014-4865-b06d-2de147dd8b3f
+langcode: en
+status: true
+dependencies:
+  theme:
+    - wyciwyg
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: wyciwyg_primary_local_tasks
+theme: wyciwyg
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

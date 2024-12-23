@@ -1,0 +1,22 @@
+uuid: c545c107-cc7c-40e0-9453-f9fd55342b03
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - wyciwyg
+_core:
+  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
+id: wyciwyg_breadcrumbs
+theme: wyciwyg
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }
