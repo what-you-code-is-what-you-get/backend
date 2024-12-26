@@ -21,12 +21,10 @@ bundle: submission
 mode: default
 content:
   field_challenge_id:
-    type: entity_reference_autocomplete
-    weight: 7
+    type: string_textfield
+    weight: 26
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }

@@ -20,12 +20,12 @@ bundle: submission
 mode: default
 content:
   field_challenge_id:
-    type: entity_reference_label
+    type: string
     label: above
     settings:
-      link: true
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 105
+    weight: 108
     region: content
   field_email:
     type: basic_string
