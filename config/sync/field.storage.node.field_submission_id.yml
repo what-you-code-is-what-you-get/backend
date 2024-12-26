@@ -1,11 +1,11 @@
-uuid: ae0fbe33-3ea4-40af-915e-bc511804d18f
+uuid: 97859e25-fdc9-4805-b37a-0c0c7298e553
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_challenge_id
-field_name: field_challenge_id
+id: node.field_submission_id
+field_name: field_submission_id
 entity_type: node
 type: string
 settings:

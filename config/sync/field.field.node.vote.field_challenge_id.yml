@@ -1,0 +1,19 @@
+uuid: b3eca99f-04d8-43d3-a160-d1e9475ff935
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_challenge_id
+    - node.type.vote
+id: node.vote.field_challenge_id
+field_name: field_challenge_id
+entity_type: node
+bundle: vote
+label: 'Challenge ID'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

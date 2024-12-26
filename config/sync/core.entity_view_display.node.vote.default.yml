@@ -1,0 +1,37 @@
+uuid: 98962e23-b9eb-44da-8926-4d9709373f07
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.vote.field_challenge_id
+    - field.field.node.vote.field_submission_id
+    - node.type.vote
+  module:
+    - user
+id: node.vote.default
+targetEntityType: node
+bundle: vote
+mode: default
+content:
+  field_challenge_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_submission_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }
