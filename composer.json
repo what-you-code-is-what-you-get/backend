@@ -25,6 +25,7 @@
         "drupal/gin_toolbar": "^1.0@rc",
         "drupal/jsonapi_extras": "^3.26",
         "drupal/pathauto": "^1.13",
+        "drupal/rest_api_authentication": "^2.0",
         "drush/drush": "^13.3"
     },
     "require-dev": {

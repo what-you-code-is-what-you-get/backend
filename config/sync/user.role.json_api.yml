@@ -1,0 +1,9 @@
+uuid: c2941ef6-0044-402e-b4be-57ccdf7bda66
+langcode: en
+status: true
+dependencies: {  }
+id: json_api
+label: 'JSON API'
+weight: -8
+is_admin: false
+permissions: {  }

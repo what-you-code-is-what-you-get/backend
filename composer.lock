@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85408dcf0d062fca0fd6f9c8398195a3",
+    "content-hash": "8e5225ead0f3a52a5ac87d234cd6b289",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2179,6 +2179,62 @@
                 "source": "https://cgit.drupalcode.org/pathauto",
                 "issues": "https://www.drupal.org/project/issues/pathauto",
                 "documentation": "https://www.drupal.org/docs/8/modules/pathauto"
+            }
+        },
+        {
+            "name": "drupal/rest_api_authentication",
+            "version": "2.0.17",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/rest_api_authentication.git",
+                "reference": "2.0.17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/rest_api_authentication-2.0.17.zip",
+                "reference": "2.0.17",
+                "shasum": "f5d99e26104eda110e94807bfaf577c79f5f587f"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.17",
+                    "datestamp": "1729853182",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "arsh244",
+                    "homepage": "https://www.drupal.org/user/3619504"
+                },
+                {
+                    "name": "gauravsood91",
+                    "homepage": "https://www.drupal.org/user/3288491"
+                },
+                {
+                    "name": "purva_shende",
+                    "homepage": "https://www.drupal.org/user/3723921"
+                },
+                {
+                    "name": "singh_ankit",
+                    "homepage": "https://www.drupal.org/user/3723914"
+                }
+            ],
+            "description": "Drupal API Authentication module secures unauthorized access to your Drupal site APIs using different API authentication methods.",
+            "homepage": "https://www.drupal.org/project/rest_api_authentication",
+            "support": {
+                "source": "https://git.drupalcode.org/project/rest_api_authentication"
             }
         },
         {
