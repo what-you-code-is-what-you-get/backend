@@ -1,0 +1,6 @@
+services:
+  login_redirect.subscriber:
+    class: Drupal\login_redirect\EventSubscriber\LoginRedirectSubscriber
+    arguments: ["@current_user", "@current_route_match"]
+    tags:
+      - { name: event_subscriber }
