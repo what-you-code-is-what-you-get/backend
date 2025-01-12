@@ -1,0 +1,7 @@
+name: "Login Redirect"
+type: module
+description: "Redirects users to the front page upon login if they only have the authenticated role."
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - user
