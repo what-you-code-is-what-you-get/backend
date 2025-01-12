@@ -2,13 +2,13 @@ _core:
   default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
 langcode: en
 uuid: d57ebeea-a010-43e9-96ec-acc66fb1cadb
-name: 'Drush Site-Install'
+name: 'Dashboard - WYCIWYC'
 mail: admin@example.com
-slogan: ''
+slogan: 'What you code is what you get'
 page:
   403: ''
   404: ''
-  front: /node
+  front: /challenges
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: en
