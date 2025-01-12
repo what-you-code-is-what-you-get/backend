@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Anonymous Redirect module.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function anonymous_redirect_preprocess_page(&$variables) {
+  // Check if the current page is the front page.
+  if ($variables['is_front']) {
+    // Trigger the page cache kill switch.
+    \Drupal::service('page_cache_kill_switch')->trigger();
+  }
+}
