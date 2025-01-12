@@ -56,7 +56,11 @@ class AnonymousRedirectSubscriber implements EventSubscriberInterface {
     if (
       \Drupal::currentUser()->isAnonymous() &&
       \Drupal::routeMatch()->getRouteName() != 'user.login' &&
-      \Drupal::routeMatch()->getRouteName() != 'user.reset.login'
+      \Drupal::routeMatch()->getRouteName() != 'user.reset.login' &&
+      \Drupal::routeMatch()->getRouteName() != 'user.reset' &&
+      \Drupal::routeMatch()->getRouteName() != 'user.reset.form' &&
+      \Drupal::routeMatch()->getRouteName() != 'user.pass' &&
+      \Drupal::routeMatch()->getRouteName() != 'user.register'
     ) {
       $route_name = \Drupal::routeMatch()->getRouteName();
       if (strpos($route_name, 'view') === 0 && strpos($route_name, 'rest_') !== FALSE) {
