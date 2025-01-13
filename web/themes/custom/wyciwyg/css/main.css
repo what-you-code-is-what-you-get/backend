@@ -1,0 +1,22 @@
+body {
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--step-0);
+  background-color: var(--dark-gray);
+  color: var(--text-color);
+  min-height: 100vh;
+  transition: color 0.5s, background-color 0.5s;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.u-container {
+  max-width: var(--grid-max-width);
+  padding-inline: var(--grid-gutter);
+  margin-inline: auto;
+}
+
+.u-grid {
+  display: grid;
+  gap: var(--grid-gutter);
+}
