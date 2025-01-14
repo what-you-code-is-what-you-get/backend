@@ -15,7 +15,7 @@ $databases['default']['default'] = array (
 
 $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT');
 
-$settings['trusted_host_patterns'][] = '^wyciwyg\.prototyp\.io$';
+$settings['trusted_host_patterns'][] = '^dashboard\.wyciwyg\.dev$';
 
 $config['system.performance']['css']['preprocess'] = TRUE;
 $config['system.performance']['js']['preprocess'] = TRUE;
