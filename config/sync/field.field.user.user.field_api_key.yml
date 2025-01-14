@@ -1,0 +1,20 @@
+uuid: 9f244bc9-9cc3-42d1-8430-d21d1e4473ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_api_key
+  module:
+    - user
+id: user.user.field_api_key
+field_name: field_api_key
+entity_type: user
+bundle: user
+label: 'API key'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
