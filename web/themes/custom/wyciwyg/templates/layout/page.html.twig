@@ -44,15 +44,10 @@
 #}
 <div class="layout-container u-container">
 
-  <header role="banner">
-    {{ page.header }}
-  </header>
+  {% include '@wyciwyg/includes/header.html.twig' %}
 
-  {{ page.primary_menu }}
-  {{ page.secondary_menu }}
-
-  {{ page.breadcrumb }}
-
+  {# {{ page.breadcrumb }}
+ #}
   {{ page.highlighted }}
 
   {{ page.help }}
@@ -77,11 +72,5 @@
     {% endif %}
 
   </main>
-
-  {% if page.footer %}
-    <footer role="contentinfo">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
 
 </div>{# /.layout-container #}
