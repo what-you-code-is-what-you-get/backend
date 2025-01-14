@@ -1,0 +1,14 @@
+header {
+  padding: 20px 0;
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+  }
+
+  h1 {
+    color: var(--bv-green);
+  }
+}

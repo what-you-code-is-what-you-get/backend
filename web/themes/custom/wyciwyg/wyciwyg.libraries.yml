@@ -8,3 +8,5 @@ base:
         weight: -10
       css/main.css:
         weight: -10
+      css/components/header.css:
+        weight: -10

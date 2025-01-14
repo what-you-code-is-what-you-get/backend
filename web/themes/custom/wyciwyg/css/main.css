@@ -20,3 +20,19 @@ body {
   display: grid;
   gap: var(--grid-gutter);
 }
+
+h1 {
+  font-size: var(--step-5);
+}
+
+h2 {
+  font-size: var(--step-4);
+}
+
+h3 {
+  font-size: var(--step-3);
+}
+
+small {
+  font-size: var(--step--1);
+}
