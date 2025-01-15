@@ -1,0 +1,23 @@
+.pager {
+  margin-top: 40px;
+  .pager__items {
+    display: flex;
+    align-items: center;
+
+    .pager__item {
+      &.is-active {
+        margin: 0 10px;
+      }
+
+      &.pager__item--next,
+      &.pager__item--previous {
+        color: var(--bv-orange);
+        font-size: var(--step-1);
+
+        &:hover {
+          font-weight: 1000;
+        }
+      }
+    }
+  }
+}
