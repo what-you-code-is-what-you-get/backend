@@ -1,6 +1,6 @@
 uuid: b11b9044-17e6-4cab-80f3-08a68d48f077
 langcode: en
-status: true
+status: false
 dependencies:
   theme:
     - wyciwyg
