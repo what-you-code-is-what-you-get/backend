@@ -10,3 +10,7 @@ base:
         weight: -10
       css/components/header.css:
         weight: -10
+      css/components/pager.css:
+        weight: -10
+      css/pages/challenges.css:
+        weight: -10

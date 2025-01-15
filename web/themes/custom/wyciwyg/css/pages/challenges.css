@@ -1,0 +1,37 @@
+.challenges {
+  .header {
+    margin-bottom: 20px;
+
+    h1 {
+      color: var(--bv-orange);
+    }
+  }
+
+  .view-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    a {
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      transition: 0.8s;
+    }
+    a:hover {
+      text-decoration-color: var(--bv-green);
+    }
+  }
+
+  .view-empty {
+    font-size: var(--step-3);
+    color: var(--bv-green);
+    text-align: center;
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        background-color: var(--bv-green-hover-bg);
+      }
+    }
+  }
+}
