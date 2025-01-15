@@ -1,5 +1,6 @@
 header {
   padding: 20px 0;
+  margin-bottom: 20px;
 
   .logo {
     display: flex;
@@ -8,7 +9,8 @@ header {
     width: fit-content;
   }
 
-  h1 {
+  span {
     color: var(--bv-green);
+    font-size: var(--step-5);
   }
 }
