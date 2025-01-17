@@ -23,7 +23,7 @@
 
 # Ignore .env files as they are personal
 /.env
-/Bruno API/.env
+/bruno/*/.env
 
 # Misc
 node_modules
