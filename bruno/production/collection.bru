@@ -1,0 +1,8 @@
+auth {
+  mode: basic
+}
+
+auth:basic {
+  username: {{process.env.basicAuthName}}
+  password: {{process.env.basicAuthPassword}}
+}
