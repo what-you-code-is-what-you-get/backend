@@ -22,3 +22,5 @@ $config['system.performance']['js']['preprocess'] = TRUE;
 
 $settings['reverse_proxy'] = TRUE;
 $settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
+
+$config['rest_api_authentication.settings']['api_token'] = getenv('REST_API_TOKEN');
