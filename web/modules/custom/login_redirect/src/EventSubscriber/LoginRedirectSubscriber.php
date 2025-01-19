@@ -55,7 +55,7 @@ class LoginRedirectSubscriber implements EventSubscriberInterface {
    */
   public function onKernelResponse(ResponseEvent $event) {
     // Check if the current route is the user login route.
-    if ($this->routeMatch->getRouteName() === 'user.login') {
+    if ($this->routeMatch->getRouteName() === 'user.login' || $this->routeMatch->getRouteName() === 'user.register') {
       // Check if the user is authenticated.
       if ($this->currentUser->isAuthenticated()) {
         // Redirect to the front page.

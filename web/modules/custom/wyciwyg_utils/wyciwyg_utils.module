@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for wyciwyg-utils module.
+ */
+
+ use Drupal\user\Entity\User;
+
+ /**
+ * Implements hook_entity_presave() for user entities.
+ *
+ * Adds the 'gamemaster' role to new users.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity being saved.
+ */
+function wyciwyg_utils_user_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity instanceof User && $entity->isNew()) {
+      $entity->addRole('gamemaster');
+  }
+}   
