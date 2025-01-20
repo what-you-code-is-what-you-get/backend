@@ -1,6 +1,7 @@
 body {
   font-family: "JetBrains Mono", monospace;
   font-size: var(--step-0);
+  line-height: 1.6;
   background-color: var(--dark-gray);
   color: var(--text-color);
   min-height: 100vh;
@@ -31,6 +32,12 @@ h2 {
 
 h3 {
   font-size: var(--step-3);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.35;
 }
 
 small {

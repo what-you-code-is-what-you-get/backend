@@ -58,6 +58,8 @@ base:
         weight: -10
       css/components/challenge-teaser.css:
         weight: -10
+      css/pages/challenge.css:
+        weight: -10
 dialog:
   version: VERSION
   css:
