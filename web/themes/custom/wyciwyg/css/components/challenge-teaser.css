@@ -1,0 +1,17 @@
+.challenge-teaser {
+  display: block;
+  height: 100%;
+  min-height: 300px;
+  outline: 3px solid var(--dark-gray);
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    outline: 6px solid var(--bv-green);
+  }
+
+  h2 {
+    font-size: var(--step-3);
+    margin-top: 10px;
+  }
+}

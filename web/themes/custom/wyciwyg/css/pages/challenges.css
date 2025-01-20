@@ -8,23 +8,18 @@
   }
 
   .view-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
 
-    a {
-      text-decoration: underline;
-      text-decoration-color: transparent;
-      transition: 0.8s;
-    }
-    a:hover {
-      text-decoration-color: var(--bv-green);
+    @media screen and (min-width: 576px) {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
   .view-empty {
-    font-size: var(--step-3);
     color: var(--bv-green);
+    font-size: var(--step-3);
     text-align: center;
     a {
       text-decoration: underline;

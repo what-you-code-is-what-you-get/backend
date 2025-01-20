@@ -42,6 +42,12 @@
     clamp(1.125rem, 0.6467rem + 2.3913vw, 2.5rem)
   );
   --grid-columns: 12;
+
+  /* Media Queries Breakpoints */
+  --mqb-small: 576px;
+  --mqb-medium: 768px;
+  --mqb-large: 992px;
+  --mqb-extra-large: 1200px;
 }
 
 @font-face {
