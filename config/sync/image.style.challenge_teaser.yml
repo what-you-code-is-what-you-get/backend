@@ -1,0 +1,15 @@
+uuid: 4350eaa4-c2ba-4597-a9ad-e076e5c8b3bb
+langcode: en
+status: true
+dependencies: {  }
+name: challenge_teaser
+label: 'Challenge teaser'
+effects:
+  cc486c45-0c42-48bd-b661-5ecd73ff22e7:
+    uuid: cc486c45-0c42-48bd-b661-5ecd73ff22e7
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 560
+      height: 150
+      anchor: center-center

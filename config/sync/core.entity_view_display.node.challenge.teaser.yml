@@ -12,18 +12,26 @@ dependencies:
     - field.field.node.challenge.field_phone_checkbox
     - field.field.node.challenge.field_reference_image
     - field.field.node.challenge.field_time
+    - image.style.challenge_teaser
     - node.type.challenge
   module:
+    - media
     - user
 id: node.challenge.teaser
 targetEntityType: node
 bundle: challenge
 mode: teaser
 content:
-  links:
-    settings: {  }
+  field_reference_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: challenge_teaser
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   field_assets: true
@@ -32,5 +40,5 @@ hidden:
   field_game_pin: true
   field_instructions: true
   field_phone_checkbox: true
-  field_reference_image: true
   field_time: true
+  links: true
