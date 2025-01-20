@@ -11,8 +11,10 @@ dependencies:
     - field.field.node.challenge.field_phone_checkbox
     - field.field.node.challenge.field_reference_image
     - field.field.node.challenge.field_time
+    - image.style.thumbnail
     - node.type.challenge
   module:
+    - media
     - text
     - user
 id: node.challenge.default
@@ -21,11 +23,13 @@ bundle: challenge
 mode: default
 content:
   field_assets:
-    type: entity_reference_entity_view
+    type: media_thumbnail
     label: above
     settings:
-      view_mode: default
-      link: false
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 4
     region: content
