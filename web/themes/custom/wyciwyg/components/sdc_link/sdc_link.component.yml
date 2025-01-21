@@ -1,0 +1,26 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: SDC Link
+status: stable
+props:
+  type: object
+  required:
+    - text
+    - link
+  properties:
+    text:
+      type: string
+      title: Text
+      # @todo Add examples here.
+      examples: ["Click here"]
+    link:
+      type: string
+      title: Link
+      # @todo Add examples here.
+      examples: ["www.wyciwyg.dev"]
+    style:
+      type: string
+      title: Style
+      enum:
+        - "orange"
+        - "green"
+        - "blue"
