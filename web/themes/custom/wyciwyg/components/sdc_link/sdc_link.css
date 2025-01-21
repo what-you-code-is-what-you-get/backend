@@ -1,0 +1,45 @@
+.sdc_link {
+  color: var(--text-color-dark);
+  display: flex;
+  font-size: var(--step-2);
+  justify-content: center;
+  padding: 20px 0;
+  width: 100%;
+  border: 6px solid var(--dark-gray);
+  transition: 0.5s;
+
+  &.orange {
+    background-color: var(--bv-orange);
+    border: 6px solid var(--bv-orange);
+
+    &:hover,
+    &:focus {
+      background-color: var(--dark-gray);
+      color: var(--bv-orange);
+      border: 6px solid var(--bv-orange);
+    }
+  }
+
+  &.green {
+    background-color: var(--bv-green);
+    border: 6px solid var(--bv-green);
+
+    &:hover,
+    &:focus {
+      background-color: var(--dark-gray);
+      color: var(--bv-green);
+      border: 6px solid var(--bv-green);
+    }
+  }
+
+  &.blue {
+    background-color: var(--bv-blue);
+    border: 6px solid var(--bv-blue);
+    color: var(--text-color);
+    &:hover,
+    &:focus {
+      background-color: var(--dark-gray);
+      border: 6px solid var(--bv-blue);
+    }
+  }
+}
