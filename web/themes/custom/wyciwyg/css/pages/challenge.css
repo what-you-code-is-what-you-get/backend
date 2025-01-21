@@ -1,14 +1,97 @@
 .challenge {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header"
+    "sidebar"
+    "main";
+  gap: 10px 40px;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+      "header header"
+      "sidebar main";
+  }
+
+  .field {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .field__label {
+    color: var(--bv-orange);
+    font-size: var(--step-1);
+    font-weight: bold;
+  }
+
+  .field--name-field-media-image {
+    margin: 0;
+  }
+
+  .header {
+    grid-area: header;
+    h1 {
+      margin: 0;
+    }
+  }
 
   .sidebar {
+    grid-area: sidebar;
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 
   .content {
-    h1 {
-      margin-top: 0;
+    grid-area: main;
+
+    .gamepin-time {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .field--name-field-game-pin,
+    .field--name-field-time {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .field__item {
+        color: var(--bv-green);
+        font-size: var(--step-7);
+        line-height: 1;
+      }
+    }
+
+    .assets {
+      margin-top: 20px;
+      .label {
+        color: var(--bv-green);
+        font-size: var(--step-1);
+        font-weight: bold;
+      }
+      .assets-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .asset {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        @media screen and (min-width: 768px) {
+          flex-direction: row;
+        }
+      }
     }
   }
 }

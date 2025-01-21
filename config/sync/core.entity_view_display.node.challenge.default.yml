@@ -11,7 +11,7 @@ dependencies:
     - field.field.node.challenge.field_phone_checkbox
     - field.field.node.challenge.field_reference_image
     - field.field.node.challenge.field_time
-    - image.style.thumbnail
+    - image.style.medium
     - node.type.challenge
   module:
     - media
@@ -27,7 +27,7 @@ content:
     label: above
     settings:
       image_link: ''
-      image_style: thumbnail
+      image_style: medium
       image_loading:
         attribute: lazy
     third_party_settings: {  }
@@ -61,7 +61,7 @@ content:
     region: content
   field_instructions:
     type: text_default
-    label: hidden
+    label: above
     settings: {  }
     third_party_settings: {  }
     weight: 1
@@ -78,7 +78,7 @@ content:
     region: content
   field_reference_image:
     type: entity_reference_entity_view
-    label: hidden
+    label: above
     settings:
       view_mode: default
       link: false

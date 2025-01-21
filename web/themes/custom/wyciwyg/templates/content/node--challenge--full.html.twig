@@ -61,23 +61,86 @@
  *
  */
 #}
+
+{% set linkArray = [
+  {
+    text: 'Start',
+    link: "/challenge/lobby/" ~ node.id,
+    style: "orange",
+  },
+  {
+    text: 'Result',
+    link: "/challenge/results/" ~ node.id,
+    style: "green",
+  },
+  {
+    text: 'Voting information',
+    link: "/challenge/voting/" ~ node.id,
+    style: "orange",
+  },
+  {
+    text: 'Podium',
+    link: "/challenge/podium/" ~ node.id,
+    style: "green",
+  },
+  {
+    text: 'All votes',
+    link: "/challenge/votes/" ~ node.id,
+    style: "orange",
+  },
+] %}
+
+
 {{ attach_library('wyciwyg/node') }}
 <article class="challenge">
-
+  <div class="header">
+    <h1{{ title_attributes }}>
+        {{ label|render|striptags|trim }}
+    </h1>
+  </div>
+  
   <div class="sidebar">
     {{ content.field_reference_image }}
-    {{ content.field_game_pin }}
-    {{ content.field_game_mode }}
-  
+
+    <div class="buttons">
+      {% for link in linkArray %}
+        {% include 'wyciwyg:sdc_link' with {
+          text: link.text,
+          link: link.link,
+          style: link.style,
+        } %}
+      {% endfor %}
+    </div>
   </div>
   <div class="content">
-    <h1{{ title_attributes }}>
-      {{ label|render|striptags|trim }}
-    </h1>
+    <div class="gamepin-time">
+      {{ content.field_game_pin }}
+      {{ content.field_time }}
+    </div>
+    <div class="grid">
+      {{ content.field_game_mode }}
+      {{ content.field_email_checkbox }}
+      {{ content.field_phone_checkbox }}
+    </div>
     {{ content.field_instructions }}
-    {{ content.field_assets }}
+      <div class="assets">
+        <div class="field__label">Assets</div>
+        <div class="assets-wrapper">
+          {% for item in content.field_assets %}
+            {% if item['#item'].entity.uri.value %}
+              <div class="asset">
+              {% set image_uri = item['#item']|file_uri %}
+                <img src="{{ image_uri|image_style('medium') }}" alt="{{ item['#item'].alt }}">
+                {{ base_path ~ item['#item']|file_url }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
 
   </div>
+  
   
 
   
