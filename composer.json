@@ -27,6 +27,7 @@
         "drupal/mail_login": "^4.0",
         "drupal/pathauto": "^1.13",
         "drupal/rest_api_authentication": "^2.0",
+        "drupal/twig_tweak": "^3.4",
         "drush/drush": "^13.3"
     },
     "require-dev": {
