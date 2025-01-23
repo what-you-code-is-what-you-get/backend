@@ -1,0 +1,8 @@
+.sdc_back {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--bv-orange);
+    text-decoration-thickness: 4px;
+  }
+}
