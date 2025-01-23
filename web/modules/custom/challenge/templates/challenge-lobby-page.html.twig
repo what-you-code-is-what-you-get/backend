@@ -1,0 +1,19 @@
+<article class="challenge-lobby">
+  {% include 'wyciwyg:sdc_back' %}
+  <div class="content">
+    <h1>{{ label }}</h1>
+    <div class="grid"> 
+      <div class="player-list">
+        <p>Players</p>
+      </div>
+      <div class="gamepin">
+        <span>{{ game_pin }}</span>
+        <p>Game PIN</p>
+      </div>
+      <div class="timer">
+        <p>Timer</p>
+        {{ time }}
+      </div>
+    </div>
+  </div>
+</article>
