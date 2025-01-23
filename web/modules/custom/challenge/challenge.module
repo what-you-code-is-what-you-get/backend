@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Challenge module.
+ */
+
+ function challenge_theme(): array {
+    return [
+        'challenge_lobby_page' => [
+            'variables' => [
+            'label' => NULL,
+            'game_pin' => NULL,
+            'time' => NULL,
+            ],
+        ],
+    ];
+}
