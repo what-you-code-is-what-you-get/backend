@@ -1,9 +1,71 @@
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .challenge-lobby {
+  .display-time-up {
+    text-align: center;
+    color: var(--bv-green);
+    font-size: var(--step-8);
+    margin-bottom: 20px;
+    display: none;
+    animation: pulsate 1s infinite ease-in-out;
+
+    &.show {
+      display: block;
+    }
+  }
+
   .grid {
     display: grid;
+    gap: 20px;
     grid-template-columns: 1fr;
     @media screen and (min-width: 768px) {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .gamepin {
+    text-align: center;
+    span {
+      color: var(--bv-orange);
+      font-size: var(--step-6);
+    }
+  }
+
+  .timer {
+    text-align: center;
+    span {
+      color: var(--bv-green);
+      font-size: var(--step-8);
+    }
+    button {
+      background-color: var(--bv-green);
+      border: 6px solid var(--bv-green);
+      border: 6px solid var(--dark-gray);
+      color: var(--text-color-dark);
+      cursor: pointer;
+      display: flex;
+      font-size: var(--step-2);
+      justify-content: center;
+      padding: 20px 0;
+      transition: 0.5s;
+      width: 100%;
+
+      &:hover,
+      &:focus {
+        background-color: var(--dark-gray);
+        border: 6px solid var(--bv-green);
+        color: var(--bv-green);
+      }
     }
   }
 }

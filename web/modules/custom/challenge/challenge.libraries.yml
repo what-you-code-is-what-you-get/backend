@@ -1,4 +1,7 @@
 challenge:
+  version: 1.x
+  js:
+    js/challenge.js: {}
   css:
     theme:
       css/challenge.css: {}

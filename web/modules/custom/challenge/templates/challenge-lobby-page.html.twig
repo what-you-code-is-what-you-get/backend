@@ -2,17 +2,21 @@
   {% include 'wyciwyg:sdc_back' %}
   <div class="content">
     <h1>{{ label }}</h1>
+    <div class="display-time-up">
+      Time is up!
+    </div>
     <div class="grid"> 
-      <div class="player-list">
+      {# <div class="player-list">
         <p>Players</p>
+      </div> #}
+      <div class="timer">
+        <p>Timer</p>
+        <span>{{ time }}</span>
+        <button>Start</button>
       </div>
       <div class="gamepin">
         <span>{{ game_pin }}</span>
         <p>Game PIN</p>
-      </div>
-      <div class="timer">
-        <p>Timer</p>
-        {{ time }}
       </div>
     </div>
   </div>
