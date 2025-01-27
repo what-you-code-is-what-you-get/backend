@@ -15,5 +15,12 @@ function challenge_theme(): array
         'time' => NULL,
       ],
     ],
+    'challenge_voting_page' => [
+      'variables' => [
+        'label' => NULL,
+        'game_pin' => NULL,
+        'qr_code_uri' => NULL,
+      ],
+    ],
   ];
 }

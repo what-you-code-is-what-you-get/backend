@@ -69,3 +69,32 @@
     }
   }
 }
+
+.challenge-voting {
+  margin-bottom: 200px;
+  .grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .qrcode {
+    display: flex;
+    justify-content: center;
+  }
+
+  .gamepin {
+    text-align: center;
+    span {
+      color: var(--bv-orange);
+      font-size: var(--step-6);
+    }
+  }
+
+  .url {
+    span {
+      color: var(--bv-green);
+      font-size: var(--step-8);
+    }
+  }
+}

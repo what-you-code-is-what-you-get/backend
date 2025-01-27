@@ -1,8 +1,16 @@
 challenge.lobby:
   path: "/challenge/lobby/{node_id}"
   defaults:
-    _controller: '\Drupal\challenge\Controller\LobbyController::view'
+    _controller: '\Drupal\challenge\Controller\ChallengeController::lobby'
     _title: "Challenge Lobby"
+  requirements:
+    _permission: "access challenge pages"
+    node_id: \d+
+challenge.voting:
+  path: "/challenge/voting/{node_id}"
+  defaults:
+    _controller: '\Drupal\challenge\Controller\ChallengeController::voting'
+    _title: "Challenge Voting"
   requirements:
     _permission: "access challenge pages"
     node_id: \d+
