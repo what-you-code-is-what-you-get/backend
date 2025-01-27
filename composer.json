@@ -28,7 +28,8 @@
         "drupal/pathauto": "^1.13",
         "drupal/rest_api_authentication": "^2.0",
         "drupal/twig_tweak": "^3.4",
-        "drush/drush": "^13.3"
+        "drush/drush": "^13.3",
+        "endroid/qr-code": "^6.0"
     },
     "require-dev": {
         "kint-php/kint": "^6.0"
