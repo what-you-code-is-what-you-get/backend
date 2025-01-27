@@ -2,7 +2,7 @@
 namespace Drupal\challenge\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
@@ -20,20 +20,17 @@ class ChallengeController extends ControllerBase
   /**
    * Displays the lobby page for a challenge node.
    *
-   * This method loads a node by its ID, retrieves specific fields from the node,
-   * and returns a render array to display the lobby page using a Twig template.
+   * Loads a node by its ID, retrieves specific fields, and returns a render array 
+   * to display the lobby page using a Twig template.
    *
-   * @param int $node_id
-   *   The ID of the node.
+   * @param NodeInterface $node
+   *   The node entity.
    *
    * @return array
    *   A render array for the lobby page.
    */
-  public function lobby(int $node_id): array
+  public function lobby(NodeInterface $node): array
   {
-    // Load the node by ID
-    $node = Node::load($node_id);
-
     // Initialize variables
     $label = '';
     $game_pin = '';
@@ -75,20 +72,17 @@ class ChallengeController extends ControllerBase
   /**
    * Displays the voting page for a challenge node.
    *
-   * This method loads a node by its ID, retrieves specific fields from the node,
-   * and returns a render array to display the voting page using a Twig template.
+   * Loads a node by its ID, retrieves specific fields, and returns a render array 
+   * to display the voting page using a Twig template.
    *
-   * @param int $node_id
-   *   The ID of the node.
+   * @param NodeInterface $node
+   *   The node entity.
    *
    * @return array
    *   A render array for the voting page.
    */
-  public function voting(int $node_id): array
+  public function voting(NodeInterface $node): array
   {
-    // Load the node by ID
-    $node = Node::load($node_id);
-
     // Initialize variables
     $label = '';
     $game_pin = '';
@@ -111,7 +105,7 @@ class ChallengeController extends ControllerBase
       '#title' => $this->t('Voting - Challenge'),
       '#label' => $label,
       '#game_pin' => $game_pin,
-      '#qr_code_uri' => $this->qrCode($node_id),
+      '#qr_code_uri' => $this->qrCode($node->id()),
       '#attached' => [
         'library' => [
           'challenge/challenge',
