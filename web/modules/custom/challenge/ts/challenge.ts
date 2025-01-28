@@ -2,7 +2,7 @@
  * Initializes the countdown timer functionality.
  * Adds an event listener to the button to start the countdown.
  */
-document.addEventListener("DOMContentLoaded", () => {
+function initializeCountdownTimer(): void {
   const timerButton = document.querySelector(
     ".timer button"
   ) as HTMLButtonElement;
@@ -16,6 +16,25 @@ document.addEventListener("DOMContentLoaded", () => {
       startCountdown(initialTime, timerSpan);
     });
   }
+}
+
+/**
+ * Initializes the show names functionality.
+ * Adds an event listener to the button to toggle the visibility of elements with the class 'name'.
+ */
+function initializeShowNames(): void {
+  const showNameButton = document.querySelector(
+    "button.show-names"
+  ) as HTMLButtonElement;
+
+  if (showNameButton) {
+    showNameButton.addEventListener("click", showNames);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeCountdownTimer();
+  initializeShowNames();
 });
 
 /**
@@ -63,4 +82,31 @@ function startCountdown(duration: number, display: HTMLSpanElement) {
       }
     }
   }, 1000);
+}
+
+/**
+ * Toggles the 'show' class on all elements with the class 'name' and updates the button text.
+ *
+ * This function selects all elements with the class 'name' and toggles
+ * the 'show' class on each of them. It also toggles the text of the button
+ * with the class 'show-names' between "Show Names" and "Hide Names".
+ */
+function showNames(): void {
+  const names: NodeListOf<HTMLElement> = document.querySelectorAll(".name");
+  const showNameButton = document.querySelector(
+    "button.show-names"
+  ) as HTMLButtonElement;
+
+  names.forEach((name) => {
+    name.classList.toggle("show");
+  });
+
+  // Toggle the button text
+  if (showNameButton) {
+    if (showNameButton.textContent === "Show Names") {
+      showNameButton.textContent = "Hide Names";
+    } else {
+      showNameButton.textContent = "Show Names";
+    }
+  }
 }
