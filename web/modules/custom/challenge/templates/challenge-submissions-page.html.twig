@@ -1,0 +1,23 @@
+<article class="challenge-submissions">
+  {% include 'wyciwyg:sdc_back' %}
+  <div class="content">
+    <div class="header">
+      <h1>{{ label }}</h1>
+      <button class="btn btn-orange show-names">Show Names</button>
+      {{ drupal_field('field_reference_image', 'node', challenge_id) }}
+    </div>
+
+    <div class="grid">
+      {% for submission in submissions %}
+        <div class="grid-item">
+          <div class="id-name">
+            <span class="id">{{ submission.id }}</span><span class="name"> - {{ submission.field_name.value }}</span>
+          </div>
+          <div class="iframe">
+            <iframe srcdoc="{{ submission.field_code.value }}"></iframe>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</article>

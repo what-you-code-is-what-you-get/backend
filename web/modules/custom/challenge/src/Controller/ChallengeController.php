@@ -115,6 +115,58 @@ class ChallengeController extends ControllerBase
   }
 
   /**
+   * Retrieves and renders submissions for a given challenge node.
+   *
+   * This function takes a challenge node as input, retrieves all submission nodes
+   * associated with the challenge, and returns a render array to display the submissions
+   * using a Twig template.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The challenge node for which submissions are to be retrieved.
+   *
+   * @return array
+   *   A render array containing the challenge submissions to be displayed.
+   */
+  public function submissions(NodeInterface $node): array
+  {
+    // Initialize variables
+    $challenge_id = $node->id();
+    $label = '';
+    $submissions = [];
+
+    // Check if the node exists
+    if ($node) {
+      // Get the node label
+      $label = $node->label();
+
+      // Load all submission nodes with the same challenge ID
+      $query = \Drupal::entityQuery('node')
+        ->condition('type', 'submission')
+        ->condition('field_challenge_id', $challenge_id)
+        ->accessCheck(TRUE); // Explicitly set access check
+      $nids = $query->execute();
+
+      if (!empty($nids)) {
+        $submissions = \Drupal\node\Entity\Node::loadMultiple($nids);
+      }
+    }
+
+    // Return the value in a render array using a Twig template
+    return [
+      '#theme' => 'challenge_submissions_page',
+      '#title' => $this->t('Submissions - Challenge'),
+      '#label' => $label,
+      '#challenge_id' => $challenge_id,
+      '#submissions' => $submissions,
+      '#attached' => [
+        'library' => [
+          'challenge/challenge',
+        ],
+      ],
+    ];
+  }
+
+  /**
    * Formats time from minutes to MM:SS.
    *
    * @param int $minutes

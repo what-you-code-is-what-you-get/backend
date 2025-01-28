@@ -22,5 +22,12 @@ function challenge_theme(): array
         'qr_code_uri' => NULL,
       ],
     ],
+    'challenge_submissions_page' => [
+      'variables' => [
+        'label' => NULL,
+        'submissions' => NULL,
+        'challenge_id' => NULL,
+      ],
+    ],
   ];
 }

@@ -70,6 +70,89 @@
   }
 }
 
+.challenge-submissions {
+  margin-bottom: 200px;
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "label"
+      "image"
+      "button";
+    gap: 10px 40px;
+    margin-bottom: 40px;
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas:
+        "label label label label button button"
+        "image image image image image image";
+    }
+
+    button.show-names {
+      grid-area: button;
+      height: fit-content;
+      width: fit-content;
+      justify-self: flex-end;
+      align-self: center;
+    }
+
+    h1 {
+      grid-area: label;
+    }
+    .field--name-field-reference-image {
+      grid-area: image;
+      margin-bottom: 20px;
+      .field__label {
+        font-size: var(--step-3);
+        color: var(--bv-green);
+        font-weight: normal;
+      }
+    }
+  }
+
+  .grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .id-name {
+    font-size: var(--step-3);
+    color: var(--bv-green);
+    .name {
+      display: none;
+
+      &.show {
+        display: initial;
+      }
+    }
+  }
+
+  .iframe {
+    position: relative;
+    width: auto;
+    height: 540px;
+    overflow: hidden;
+    background-color: white;
+    iframe {
+      border: 0;
+      scale: 0.5;
+      position: absolute;
+      width: 1920px;
+      height: 1080px;
+      transform-origin: top left;
+      top: 0px;
+      left: 0px;
+    }
+  }
+}
+
 .challenge-voting {
   margin-bottom: 200px;
   .grid {
