@@ -5,12 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.submission.field_challenge_id
+    - field.field.node.submission.field_code
     - field.field.node.submission.field_email
     - field.field.node.submission.field_name
     - field.field.node.submission.field_personvernerklaering
     - field.field.node.submission.field_phone
     - field.field.node.submission.field_score
-    - field.field.node.submission.field_value
     - node.type.submission
   module:
     - user
@@ -26,9 +26,9 @@ content:
     region: content
 hidden:
   field_challenge_id: true
+  field_code: true
   field_email: true
   field_name: true
   field_personvernerklaering: true
   field_phone: true
   field_score: true
-  field_value: true
