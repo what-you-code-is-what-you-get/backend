@@ -113,6 +113,13 @@
     }
   }
 
+  .no-submissions {
+    text-align: center;
+    color: var(--bv-green);
+    font-size: var(--step-4);
+    margin-bottom: 20px;
+  }
+
   .grid {
     display: grid;
     gap: 20px;
