@@ -1,0 +1,24 @@
+<article class="challenge-votes">
+  {% include 'wyciwyg:sdc_back' %}
+  <div class="content">
+    <div class="header">
+      <h1>{{ label }}</h1>
+    </div>
+
+    {% if voting_results|length == 0 %}
+      <div class="no-votes">
+        <p>No votes yet.</p>
+      </div>
+    {% else %}
+      <div class="grid">
+        {% for result in voting_results %}
+        <div class="grid-item">
+          <div class="place">{{ loop.index }}.</div>
+          <div class="name">{{ result.field_name }}<span>({{ result.submission_id}})</span></div>
+          <div class="votes">{{ result.count }}</div>
+        </div>  
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</article>

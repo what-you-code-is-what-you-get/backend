@@ -167,6 +167,67 @@ class ChallengeController extends ControllerBase
   }
 
   /**
+   * Retrieves and processes votes for a given challenge node.
+   *
+   * This function loads all vote nodes associated with the specified challenge node,
+   * retrieves the corresponding submission nodes, and extracts the 'field_name' and
+   * 'field_submission_id' values. It then counts the votes for each submission and
+   * sorts the results by the highest count number.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The challenge node.
+   *
+   * @return array
+   *   A render array containing the voting results to be displayed, where each result
+   *   is an associative array containing:
+   *   - 'field_name': The name field from the submission node.
+   *   - 'submission_id': The submission ID from the vote node.
+   *   - 'count': The number of votes for the submission.
+   */
+  public function votes(NodeInterface $node): array
+  {
+    // Initialize variables
+    $label = $node->label();
+    $challenge_id = $node->id();
+    $votes = $this->getAllVotes($challenge_id);
+    $voting_results = [];
+
+    if (!empty($votes)) {
+      $voting_results = [];
+
+      foreach ($votes as $vote) {
+        $submission_id = $vote['field_submission_id'];
+        if (!isset($voting_results[$submission_id])) {
+          $voting_results[$submission_id] = [
+            'field_name' => $vote['field_name'],
+            'submission_id' => $submission_id,
+            'count' => 0,
+          ];
+        }
+        $voting_results[$submission_id]['count']++;
+      }
+
+      // Sort the voting results by the highest count number
+      usort($voting_results, function ($a, $b) {
+        return $b['count'] - $a['count'];
+      });
+    }
+
+    // Return the value in a render array using a Twig template
+    return [
+      '#theme' => 'challenge_votes_page',
+      '#title' => $this->t('Votes - Challenge'),
+      '#label' => $label,
+      '#voting_results' => $voting_results,
+      '#attached' => [
+        'library' => [
+          'challenge/challenge',
+        ],
+      ],
+    ];
+  }
+
+  /**
    * Formats time from minutes to MM:SS.
    *
    * @param int $minutes
@@ -214,5 +275,53 @@ class ChallengeController extends ControllerBase
     $qr_qode = $builder->build();
 
     return $qr_qode->getDataUri();
+  }
+
+  /**
+   * Retrieves all votes for a given challenge ID.
+   *
+   * This function loads all vote nodes associated with the specified challenge ID,
+   * retrieves the corresponding submission nodes, and extracts the 'field_name' and
+   * 'field_submission_id' values. It returns an array of votes with these details.
+   *
+   * @param int $challenge_id
+   *   The ID of the challenge node.
+   *
+   * @return array
+   *   An array of votes, where each vote is an associative array containing:
+   *   - 'field_name': The name field from the submission node.
+   *   - 'field_submission_id': The submission ID from the vote node.
+   */
+  protected function getAllVotes($challenge_id)
+  {
+    // Load all vote nodes with the same challenge ID
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'vote')
+      ->condition('field_challenge_id', $challenge_id)
+      ->accessCheck(TRUE); // Explicitly set access check
+    $nids = $query->execute();
+
+    $votes = [];
+    if (!empty($nids)) {
+      $vote_nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+
+      foreach ($vote_nodes as $vote_node) {
+        $submission_id = $vote_node->get('field_submission_id')->value;
+        $vote = [];
+        if (!empty($nids)) {
+          $submission_node = \Drupal\node\Entity\Node::load($submission_id);
+          if ($submission_node) {
+            $vote = [
+              'field_name' => $submission_node->get('field_name')->value,
+              'field_submission_id' => $vote_node->get('field_submission_id')->value,
+            ];
+          }
+        }
+
+        $votes[] = $vote;
+      }
+    }
+
+    return $votes;
   }
 }
