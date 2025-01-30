@@ -19,4 +19,9 @@ LABEL org.opencontainers.image.source https://github.com/Dre90/wyciwyg-drupal-ba
 # Copy precompiled codebase into the container.
 COPY --from=vendor /app/ /var/www/html/
 
-RUN echo "0 */1 * * * root /var/www/html/vendor/bin/drush cron --root=/var/www/html/web" > /etc/cron.d/drupal-cron
+# Make drush available globally
+RUN ln -s /var/www/html/vendor/bin/drush /usr/local/bin/drush
+
+# Set the working directory
+WORKDIR /var/www/html
+
