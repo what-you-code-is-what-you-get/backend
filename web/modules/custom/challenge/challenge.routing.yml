@@ -19,3 +19,10 @@ challenge.submissions:
     _title: "Challenge submissions"
   requirements:
     _permission: "access challenge pages"
+challenge.votes:
+  path: "/challenge/votes/{node}"
+  defaults:
+    _controller: '\Drupal\challenge\Controller\ChallengeController::votes'
+    _title: "Challenge votes"
+  requirements:
+    _permission: "access challenge pages"
