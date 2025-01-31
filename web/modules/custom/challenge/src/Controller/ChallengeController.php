@@ -228,6 +228,76 @@ class ChallengeController extends ControllerBase
   }
 
   /**
+   * Retrieves and processes the top 3 submissions for a given challenge node.
+   *
+   * This function loads all vote nodes associated with the specified challenge node,
+   * retrieves the corresponding submission nodes, and extracts the 'field_name' and
+   * 'field_submission_id' values. It then counts the votes for each submission, sorts
+   * the results by the highest count number, and returns the top 3 submissions with their
+   * respective placements.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The challenge node.
+   *
+   * @return array
+   *   A render array containing the top 3 voting results to be displayed, where each result
+   *   is an associative array containing:
+   *   - 'field_name': The name field from the submission node.
+   *   - 'submission_id': The submission ID from the vote node.
+   *   - 'count': The number of votes for the submission.
+   *   - 'placement': The placement of the submission (1, 2, or 3).
+   */
+  public function podium(NodeInterface $node): array
+  {
+    // Initialize variables
+    $label = $node->label();
+    $challenge_id = $node->id();
+    $votes = $this->getAllVotes($challenge_id);
+    $voting_results = [];
+    $top3 = [];
+
+    if (!empty($votes)) {
+      foreach ($votes as $vote) {
+        $submission_id = $vote['field_submission_id'];
+        if (!isset($voting_results[$submission_id])) {
+          $voting_results[$submission_id] = [
+            'field_name' => $vote['field_name'],
+            'submission_id' => $submission_id,
+            'count' => 0,
+          ];
+        }
+        $voting_results[$submission_id]['count']++;
+      }
+
+      // Sort the voting results by the highest count number
+      usort($voting_results, function ($a, $b) {
+        return $b['count'] - $a['count'];
+      });
+
+      // Get the top 3 results
+      $top3 = array_slice($voting_results, 0, 3);
+
+      // Add placement to each result
+      foreach ($top3 as $index => $result) {
+        $top3[$index]['placement'] = $index + 1;
+      }
+    }
+
+    // Return the value in a render array using a Twig template
+    return [
+      '#theme' => 'challenge_podium_page',
+      '#title' => $this->t('Votes - Challenge'),
+      '#label' => $label,
+      '#top3' => $top3,
+      '#attached' => [
+        'library' => [
+          'challenge/challenge',
+        ],
+      ],
+    ];
+  }
+
+  /**
    * Formats time from minutes to MM:SS.
    *
    * @param int $minutes

@@ -24,9 +24,20 @@ function initializeShowNames() {
         showNameButton.addEventListener("click", showNames);
     }
 }
+/**
+ * Initializes the show placement functionality.
+ * Adds an event listener to the button to toggle the visibility of elements with the class 'name'.
+ */
+function initializeShowPlacement() {
+    const showPlacementButton = document.querySelector("button.show-placement");
+    if (showPlacementButton) {
+        showPlacementButton.addEventListener("click", showPlacement);
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
     initializeCountdownTimer();
     initializeShowNames();
+    initializeShowPlacement();
 });
 /**
  * Parses a time string in the format "MM:SS" and converts it to seconds.
@@ -89,6 +100,99 @@ function showNames() {
         }
         else {
             showNameButton.textContent = "Show Names";
+        }
+    }
+}
+/**
+ * Displays the placement and triggers confetti animations.
+ *
+ * This function shows the placement of the top 3 positions by updating the DOM elements
+ * and triggering confetti animations. It uses different confetti colors for each placement
+ * (bronze, silver, and gold) and triggers additional confetti bursts every 2 seconds for
+ * 14 seconds when the first place is shown.
+ *
+ * The function expects the button with the class "show-placement" to have text content
+ * indicating which placement to show next ("Show 3. place", "Show 2. place", "Show 1. place").
+ * When the first place is shown, the button is hidden.
+ */
+function showPlacement() {
+    var _a;
+    const jsConfetti = new JSConfetti();
+    const confettiColors = [
+        "#eeeeee",
+        "#79fe9d",
+        "#1d43c6",
+        "#f9a86f",
+        "#f9ead4",
+    ];
+    const goldConfettiColors = [
+        "#FAFAD2",
+        "#EEE8AA",
+        "#F0E68C",
+        "#DAA520",
+        "#FFD700",
+        "#FFA500",
+        "#FFFFFF",
+    ];
+    const silverConfettiColors = [
+        "#D3D3D3",
+        "#C0C0C0",
+        "#A9A9A9",
+        "#808080",
+        "#FFFFFF",
+    ];
+    const bronzeConfettiColors = [
+        "#ce8946",
+        "#fca956",
+        "#82572c",
+        "#593c1e",
+        "#DDAC7D",
+    ];
+    const intervalTime = 2000; // 2 seconds
+    const totalTime = 14000; // 14 seconds
+    const placements = [
+        {
+            element: document.querySelector(".place-3"),
+            buttonText: "Show 3. place",
+            confettiColors: bronzeConfettiColors,
+            confettiNumber: 500,
+        },
+        {
+            element: document.querySelector(".place-2"),
+            buttonText: "Show 2. place",
+            confettiColors: silverConfettiColors,
+            confettiNumber: 1000,
+        },
+        {
+            element: document.querySelector(".place-1"),
+            buttonText: "Show 1. place",
+            confettiColors: goldConfettiColors,
+            confettiNumber: 1500,
+        },
+    ];
+    const showPlacementButton = document.querySelector("button.show-placement");
+    for (const placement of placements) {
+        if (showPlacementButton.textContent === placement.buttonText) {
+            placement.element.classList.add("show");
+            showPlacementButton.textContent =
+                ((_a = placements[placements.indexOf(placement) + 1]) === null || _a === void 0 ? void 0 : _a.buttonText) || "";
+            jsConfetti.addConfetti({
+                confettiColors: placement.confettiColors,
+                confettiNumber: placement.confettiNumber,
+            });
+            if (placement.buttonText === "Show 1. place") {
+                showPlacementButton.classList.add("hide");
+                const intervalId = setInterval(() => {
+                    jsConfetti.addConfetti({
+                        confettiColors: confettiColors,
+                        confettiNumber: 500,
+                    });
+                }, intervalTime);
+                setTimeout(() => {
+                    clearInterval(intervalId);
+                }, totalTime);
+            }
+            break;
         }
     }
 }
