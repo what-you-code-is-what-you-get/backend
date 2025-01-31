@@ -9,6 +9,11 @@ declare function initializeCountdownTimer(): void;
  */
 declare function initializeShowNames(): void;
 /**
+ * Initializes the show placement functionality.
+ * Adds an event listener to the button to toggle the visibility of elements with the class 'name'.
+ */
+declare function initializeShowPlacement(): void;
+/**
  * Parses a time string in the format "MM:SS" and converts it to seconds.
  *
  * @param timeString - The time string to parse.
@@ -32,3 +37,16 @@ declare function startCountdown(duration: number, display: HTMLSpanElement): voi
  * with the class 'show-names' between "Show Names" and "Hide Names".
  */
 declare function showNames(): void;
+/**
+ * Displays the placement and triggers confetti animations.
+ *
+ * This function shows the placement of the top 3 positions by updating the DOM elements
+ * and triggering confetti animations. It uses different confetti colors for each placement
+ * (bronze, silver, and gold) and triggers additional confetti bursts every 2 seconds for
+ * 14 seconds when the first place is shown.
+ *
+ * The function expects the button with the class "show-placement" to have text content
+ * indicating which placement to show next ("Show 3. place", "Show 2. place", "Show 1. place").
+ * When the first place is shown, the button is hidden.
+ */
+declare function showPlacement(): void;

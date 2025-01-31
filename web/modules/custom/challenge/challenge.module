@@ -35,5 +35,11 @@ function challenge_theme(): array
         'voting_results' => NULL,
       ],
     ],
+    'challenge_podium_page' => [
+      'variables' => [
+        'label' => NULL,
+        'top3' => NULL,
+      ],
+    ],
   ];
 }

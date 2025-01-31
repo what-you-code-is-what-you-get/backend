@@ -1,0 +1,28 @@
+<article class="challenge-podium">
+  {% include 'wyciwyg:sdc_back' %}
+  <div class="content">
+    <div class="header">
+      <h1>{{ label }}</h1>
+      {% if top3|length > 0 %}
+        <button class="btn btn-orange show-placement">Show 3. place</button>
+      {% endif %}
+    </div>
+
+    {% if top3|length == 0 %}
+      <div class="no-votes">
+        <p>No votes yet.</p>
+      </div>
+    {% else %}
+      <div class="grid">
+        {% for place in top3 %}
+        <div class="grid-item place-{{ place.placement }} ">
+          <div class="name">{{ place.field_name }}<span>({{ place.submission_id}})</span></div>
+          <div class="background">
+            <div class="place">{{ place.placement }}.</div>
+          </div>
+        </div>  
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</article>
