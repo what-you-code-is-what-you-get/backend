@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.challenge.field_game_mode
     - field.field.node.challenge.field_game_pin
     - field.field.node.challenge.field_instructions
+    - field.field.node.challenge.field_introduction_text
     - field.field.node.challenge.field_phone_checkbox
     - field.field.node.challenge.field_reference_image
     - field.field.node.challenge.field_time
@@ -65,6 +66,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_introduction_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
     region: content
   field_phone_checkbox:
     type: boolean

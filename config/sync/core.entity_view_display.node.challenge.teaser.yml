@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.challenge.field_game_mode
     - field.field.node.challenge.field_game_pin
     - field.field.node.challenge.field_instructions
+    - field.field.node.challenge.field_introduction_text
     - field.field.node.challenge.field_phone_checkbox
     - field.field.node.challenge.field_reference_image
     - field.field.node.challenge.field_time
@@ -39,6 +40,7 @@ hidden:
   field_game_mode: true
   field_game_pin: true
   field_instructions: true
+  field_introduction_text: true
   field_phone_checkbox: true
   field_time: true
   links: true

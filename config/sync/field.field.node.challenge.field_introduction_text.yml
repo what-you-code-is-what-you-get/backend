@@ -1,0 +1,24 @@
+uuid: 19379965-7237-4857-97c2-8b6f87c34f10
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_introduction_text
+    - filter.format.basic_html
+    - node.type.challenge
+  module:
+    - text
+id: node.challenge.field_introduction_text
+field_name: field_introduction_text
+entity_type: node
+bundle: challenge
+label: 'Introduction text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long
