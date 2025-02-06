@@ -22,7 +22,8 @@ use Drupal\Core\Url;
  *
  * Event subscriber to redirect anonymous users to a specific page.
  */
-class AnonymousRedirectSubscriber implements EventSubscriberInterface {
+class AnonymousRedirectSubscriber implements EventSubscriberInterface
+{
 
   /**
    * The page cache kill switch service.
@@ -37,7 +38,8 @@ class AnonymousRedirectSubscriber implements EventSubscriberInterface {
    * @param \Drupal\Core\PageCache\ResponsePolicy\KillSwitch $kill_switch
    *   The page cache kill switch service.
    */
-  public function __construct(KillSwitch $kill_switch) {
+  public function __construct(KillSwitch $kill_switch)
+  {
     $this->killSwitch = $kill_switch;
   }
 
@@ -50,7 +52,8 @@ class AnonymousRedirectSubscriber implements EventSubscriberInterface {
    * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
    *   The event to process.
    */
-  public function redirectAnonymousUsers(RequestEvent $event): void {
+  public function redirectAnonymousUsers(RequestEvent $event): void
+  {
     global $base_url;
 
     if (
@@ -79,7 +82,8 @@ class AnonymousRedirectSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents(): array {
+  public static function getSubscribedEvents(): array
+  {
     $events[KernelEvents::REQUEST][] = ['redirectAnonymousUsers'];
     return $events;
   }
