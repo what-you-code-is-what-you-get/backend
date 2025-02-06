@@ -1,0 +1,15 @@
+meta {
+  name: Get challenge by GamePin
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://wyciwyg-drupal-backend.ddev.site/jsonapi/node/challenge/?filter[field_game_pin]=4DF4D5
+  body: none
+  auth: inherit
+}
+
+params:query {
+  filter[field_game_pin]: 4DF4D5
+}

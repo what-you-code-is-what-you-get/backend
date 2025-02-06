@@ -5,7 +5,11 @@ meta {
 }
 
 get {
-  url: http://wyciwyg-drupal-backend.ddev.site/jsonapi/v1
+  url: http://wyciwyg-drupal-backend.ddev.site/jsonapi/
   body: none
   auth: inherit
+}
+
+headers {
+  Accept: application/vnd.api+json
 }

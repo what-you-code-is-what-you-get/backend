@@ -8,6 +8,6 @@
   ],
   "presets": {
     "requestType": "http",
-    "requestUrl": "http://wyciwyg-drupal-backend.ddev.site/jsonapi/v1/"
+    "requestUrl": "http://wyciwyg-drupal-backend.ddev.site/jsonapi/"
   }
 }

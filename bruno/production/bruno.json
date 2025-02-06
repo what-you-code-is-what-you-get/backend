@@ -8,6 +8,6 @@
   ],
   "presets": {
     "requestType": "http",
-    "requestUrl": "https://dashboard.wyciwyg.dev/api/v1/"
+    "requestUrl": "https://dashboard.wyciwyg.dev/jsonapi/"
   }
 }
