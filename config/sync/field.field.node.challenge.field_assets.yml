@@ -11,7 +11,7 @@ field_name: field_assets
 entity_type: node
 bundle: challenge
 label: Assets
-description: 'Upload images that are needed for the challenge'
+description: "Upload images that are needed for the challenge. \r\nThe URL will be printet out to with the filename so remember to give the file a descriptive name. "
 required: false
 translatable: false
 default_value: {  }
