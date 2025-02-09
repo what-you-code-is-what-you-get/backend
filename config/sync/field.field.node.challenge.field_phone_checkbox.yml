@@ -10,7 +10,7 @@ field_name: field_phone_checkbox
 entity_type: node
 bundle: challenge
 label: 'Collect Phone number'
-description: 'If Game mode is Conference mode, do you want to collect phone numbers from participants?'
+description: 'Do you want to collect phone numbers from participants?'
 required: false
 translatable: false
 default_value: {  }

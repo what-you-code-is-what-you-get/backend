@@ -13,7 +13,7 @@ field_name: field_introduction_text
 entity_type: node
 bundle: challenge
 label: 'Introduction text'
-description: ''
+description: 'Short text that is shown on top of the name/contact form before the challenge starts.'
 required: false
 translatable: false
 default_value: {  }
