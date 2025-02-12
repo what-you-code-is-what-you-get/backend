@@ -26,8 +26,17 @@ function wyciwyg_utils_user_presave(Drupal\Core\Entity\EntityInterface $entity) 
  * Alter the input field for the Game PIN on the Challenge content type.
  */
 function wyciwyg_utils_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  // Ensure we're altering the Challenge node edit form.
-  if ($form_id === 'node_challenge_edit_form' && !empty($form['field_game_pin']['widget'][0]['value'])) {
+  if ( ($form_id === 'node_challenge_form' || $form_id === 'node_challenge_edit_form') && !empty($form['field_game_pin']['widget'][0]['value'])) {
+    // Get the current PIN value
+    $current_value = $form['field_game_pin']['widget'][0]['value']['#default_value'] ?? '';
+
+    // Generate a new PIN only if it's empty
+    if (empty($current_value)) {
+      $new_pin = generate_unique_game_pin();
+      $form['field_game_pin']['widget'][0]['value']['#default_value'] = $new_pin;
+    }
+
+    // Set attributes for validation
     $attributes = [
       'pattern' => '[A-Z0-9]{6,}', 
       'title' => 'Game PIN must be at least 6 characters long and contain only uppercase letters and numbers.',
@@ -41,11 +50,35 @@ function wyciwyg_utils_form_alter(&$form, FormStateInterface $form_state, $form_
   }
 }
 
+/**
+ * Generate a unique 6-character game PIN.
+ *
+ * @return string
+ *   A unique uppercase alphanumeric game PIN.
+ */
+function generate_unique_game_pin() {
+  do {
+    $pin = strtoupper(substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 6));
+  } while (game_pin_exists($pin)); // Ensure uniqueness
 
-// TO-DO: Add autogenerate functionality to the Game PIN field on the Challenge content type.
+  return $pin;
+}
 
-// TO-DO: Validate the uniqueness of the Game PIN field on the Challenge content type when saved.
-
-// TO-DO: Validate the uniqueness of the Game PIN field on the Challenge content type field is no longer in focus.
-
-
+/**
+ * Check if a game PIN already exists in the database.
+ *
+ * @param string $pin
+ *   The generated PIN to check.
+ *
+ * @return bool
+ *   TRUE if the PIN already exists, FALSE otherwise.
+ */
+function game_pin_exists($pin) {
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'challenge')
+    ->condition('field_game_pin', $pin)
+    ->accessCheck(FALSE) // Explicitly disable access check to avoid QueryException
+    ->range(0, 1);
+  
+  return (bool) $query->execute();
+}
