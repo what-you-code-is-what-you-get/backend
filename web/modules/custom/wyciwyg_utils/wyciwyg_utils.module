@@ -5,7 +5,8 @@
  * Primary module hooks for wyciwyg-utils module.
  */
 
- use Drupal\user\Entity\User;
+use Drupal\user\Entity\User;
+use Drupal\Core\Form\FormStateInterface;
 
  /**
  * Implements hook_entity_presave() for user entities.
@@ -19,4 +20,32 @@ function wyciwyg_utils_user_presave(Drupal\Core\Entity\EntityInterface $entity) 
   if ($entity instanceof User && $entity->isNew()) {
       $entity->addRole('gamemaster');
   }
-}   
+}
+
+/**
+ * Alter the input field for the Game PIN on the Challenge content type.
+ */
+function wyciwyg_utils_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Ensure we're altering the Challenge node edit form.
+  if ($form_id === 'node_challenge_edit_form' && !empty($form['field_game_pin']['widget'][0]['value'])) {
+    $attributes = [
+      'pattern' => '[A-Z0-9]{6,}', 
+      'title' => 'Game PIN must be at least 6 characters long and contain only uppercase letters and numbers.',
+      'oninput' => "this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '')",
+    ];
+
+    $form['field_game_pin']['widget'][0]['value']['#attributes'] = array_merge(
+      $form['field_game_pin']['widget'][0]['value']['#attributes'] ?? [],
+      $attributes
+    );
+  }
+}
+
+
+// TO-DO: Add autogenerate functionality to the Game PIN field on the Challenge content type.
+
+// TO-DO: Validate the uniqueness of the Game PIN field on the Challenge content type when saved.
+
+// TO-DO: Validate the uniqueness of the Game PIN field on the Challenge content type field is no longer in focus.
+
+
