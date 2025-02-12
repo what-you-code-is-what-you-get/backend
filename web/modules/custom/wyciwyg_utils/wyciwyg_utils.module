@@ -51,6 +51,33 @@ function wyciwyg_utils_form_alter(&$form, FormStateInterface $form_state, $form_
 }
 
 /**
+ * Implements hook_entity_presave() to ensure the Game PIN is unique. Otherwise, generate a new one.
+ *
+ * Ensures the Game PIN is unique before saving.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity being saved.
+ */
+function wyciwyg_utils_node_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'challenge') {
+    
+    $pin_field = 'field_game_pin';
+    
+    // Get the submitted PIN.
+    $submitted_pin = $entity->get($pin_field)->value;
+    
+    // Ensure the PIN is unique.
+    if (!empty($submitted_pin) && game_pin_exists($submitted_pin, $entity->id())) {
+      \Drupal::messenger()->addError(t('The Game PIN @pin is already in use. A new PIN has been generated.', ['@pin' => $submitted_pin]));
+      
+      // Generate a new unique PIN and set it.
+      $new_pin = generate_unique_game_pin();
+      $entity->set($pin_field, $new_pin);
+    }
+  }
+}
+
+/**
  * Generate a unique 6-character game PIN.
  *
  * @return string
@@ -65,7 +92,7 @@ function generate_unique_game_pin() {
 }
 
 /**
- * Check if a game PIN already exists in the database.
+ * Check if a game PIN already exists in the database. Will exclude the current node if provided.
  *
  * @param string $pin
  *   The generated PIN to check.
@@ -73,12 +100,17 @@ function generate_unique_game_pin() {
  * @return bool
  *   TRUE if the PIN already exists, FALSE otherwise.
  */
-function game_pin_exists($pin) {
+function game_pin_exists($pin, $exclude_nid = NULL) {
   $query = \Drupal::entityQuery('node')
     ->condition('type', 'challenge')
     ->condition('field_game_pin', $pin)
     ->accessCheck(FALSE) // Explicitly disable access check to avoid QueryException
     ->range(0, 1);
-  
+
+  // If we are editing an existing node, exclude it from the query.
+  if ($exclude_nid) {
+    $query->condition('nid', $exclude_nid, '!=');
+  }
+
   return (bool) $query->execute();
 }
