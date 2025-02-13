@@ -2,7 +2,7 @@
 // Settings.local.php for Rancher.
 // @codingStandardsIgnoreFile
 
-$databases['default']['default'] = array (
+$databases['default']['default'] = array(
   'database' => getenv('DRUPAL_DATABASE_NAME'),
   'username' => getenv('DRUPAL_DATABASE_USER'),
   'password' => getenv('DRUPAL_DATABASE_PASSWORD'),
@@ -24,3 +24,5 @@ $settings['reverse_proxy'] = TRUE;
 $settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
 
 $config['rest_api_authentication.settings']['api_token'] = getenv('REST_API_TOKEN');
+
+$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/services.yml';
