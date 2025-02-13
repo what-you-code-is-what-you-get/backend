@@ -1,0 +1,10 @@
+enabled: true
+allowedHeaders:
+  - 'x-csrf-token,authorization,content-type,accept,origin,x-requested-with'
+allowedMethods:
+  - 'POST, GET'
+allowedOrigins:
+  - '*'
+exposedHeaders: {  }
+maxAge: 1000
+supportsCredentials: false
