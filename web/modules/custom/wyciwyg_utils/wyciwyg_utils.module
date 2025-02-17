@@ -114,3 +114,32 @@ function game_pin_exists($pin, $exclude_nid = NULL) {
 
   return (bool) $query->execute();
 }
+
+/**
+ * Implements hook_entity_delete() to delete all submissions and votes related to a challenge.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity being deleted.
+ */
+function wyciwyg_utils_node_delete(Drupal\Core\Entity\EntityInterface $entity) {
+  
+  // Check if the entity is a challenge node
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'challenge') {
+    
+    $nid = $entity->id();
+
+    // Load all submissions and votes related to the challenge
+    $storage = \Drupal::entityTypeManager()->getStorage('node');
+    $submissions = $storage->loadByProperties(['type' => 'submission', 'field_challenge_id' => $nid]);
+    $votes = $storage->loadByProperties(['type' => 'vote', 'field_challenge_id' => $nid]);
+
+    // Delete all submissions and votes related to the challenge
+    foreach ($submissions as $submission) {
+      $submission->delete();
+    }
+
+    foreach ($votes as $vote) {
+      $vote->delete();
+    }
+  }
+}
