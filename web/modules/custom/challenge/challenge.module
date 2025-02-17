@@ -41,5 +41,11 @@ function challenge_theme(): array
         'top3' => NULL,
       ],
     ],
+    'challenge_leaderboard_page' => [
+      'variables' => [
+        'label' => NULL,
+        'top10' => NULL,
+      ],
+    ],
   ];
 }

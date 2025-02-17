@@ -67,28 +67,47 @@
     text: 'Start',
     link: "/challenge/lobby/" ~ node.id,
     style: "green",
+    mode: ["Multiplayer mode"]
+  },
+
+  {
+    text: 'Leaderboard',
+    link: "/challenge/leaderboard/" ~ node.id,
+    style: "green",
+    mode: ["Conference mode"]
   },
   {
     text: 'Submissions',
     link: "/challenge/submissions/" ~ node.id,
     style: "green",
+    mode: ["Conference mode", "Multiplayer mode"]
   },
   {
     text: 'Voting information',
     link: "/challenge/voting/" ~ node.id,
     style: "green",
+    mode: ["Multiplayer mode"]
   },
   {
     text: 'Podium',
     link: "/challenge/podium/" ~ node.id,
     style: "green",
+    mode: ["Multiplayer mode"]
   },
   {
     text: 'All votes',
     link: "/challenge/votes/" ~ node.id,
     style: "green",
+    mode: ["Multiplayer mode"]
   },
 ] %}
+
+{% set game_mode_terms = content.field_game_mode['#items'] %}
+{% set game_mode_values = [] %}
+
+{% for term in game_mode_terms %}
+  {% set game_mode_values = game_mode_values|merge([term.entity.label()]) %}
+{% endfor %}
 
 
 {{ attach_library('wyciwyg/node') }}
@@ -98,17 +117,19 @@
         {{ label|render|striptags|trim }}
     </h1>
   </div>
-  
+
   <div class="sidebar">
     {{ content.field_reference_image }}
 
     <div class="buttons">
-      {% for link in linkArray %}
-        {% include 'wyciwyg:sdc_link' with {
-          text: link.text,
-          link: link.link,
-          style: link.style,
-        } %}
+      {% for linkObject in linkArray %}
+        {% if game_mode_values|join(', ') in linkObject.mode %}
+          {% include 'wyciwyg:sdc_link' with {
+            text: linkObject.text,
+            link: linkObject.link,
+            style: linkObject.style,
+          } %}
+        {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -140,10 +161,10 @@
 
 
   </div>
-  
-  
 
-  
+
+
+
   {# {{ content }} #}
 
 </article>

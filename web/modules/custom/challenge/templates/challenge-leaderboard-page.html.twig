@@ -1,0 +1,47 @@
+<article class="challenge-leaderboard">
+  {% include 'wyciwyg:sdc_back' %}
+  <div class="content">
+    <div class="header">
+      <h1>{{ label }}</h1>
+    </div>
+    {% if top10|length == 0 %}
+      <div class="no-submissions">
+        <p>No submissions yet.</p>
+      </div>
+    {% else %}
+      <div class="leaderboard">
+        <div class="leaderboard-header">
+        <h2>Leaderboard</h2>
+        {% if top10|length > 0 %}
+          <button class="btn btn-orange show-contact">Show contact information</button>
+        {% endif %}
+        </div>
+        <div class="grid">
+          {% for person in top10 %}
+            <div class="person">
+              <div class="placement">{{ person.placement }}</div>
+              <div class="name">
+                {{ person.field_name }}
+                {% if person.field_email or person.field_phone %}
+                  <div class="contact">
+                    {% if person.field_email %}
+                      <div>
+                        Email: {{ person.field_email }}
+                      </div>
+                    {% endif %}
+                    {% if person.field_phone %}
+                      <div>
+                        Phone: {{ person.field_phone }}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="score">{{ person.field_score }}</div>
+            </div>
+          {% endfor %}
+          </div>
+      </div>
+    {% endif %}
+  </div>
+</article>

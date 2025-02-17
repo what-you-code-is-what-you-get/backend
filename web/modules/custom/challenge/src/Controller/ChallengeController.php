@@ -20,7 +20,7 @@ class ChallengeController extends ControllerBase
   /**
    * Displays the lobby page for a challenge node.
    *
-   * Loads a node by its ID, retrieves specific fields, and returns a render array 
+   * Loads a node by its ID, retrieves specific fields, and returns a render array
    * to display the lobby page using a Twig template.
    *
    * @param NodeInterface $node
@@ -72,7 +72,7 @@ class ChallengeController extends ControllerBase
   /**
    * Displays the voting page for a challenge node.
    *
-   * Loads a node by its ID, retrieves specific fields, and returns a render array 
+   * Loads a node by its ID, retrieves specific fields, and returns a render array
    * to display the voting page using a Twig template.
    *
    * @param NodeInterface $node
@@ -105,7 +105,7 @@ class ChallengeController extends ControllerBase
       '#title' => $this->t('Voting - Challenge'),
       '#label' => $label,
       '#game_pin' => $game_pin,
-      '#qr_code_uri' => $this->qrCode($node->id()),
+      '#qr_code_uri' => $this->qrCode($node->uuid()),
       '#attached' => [
         'library' => [
           'challenge/challenge',
@@ -298,6 +298,65 @@ class ChallengeController extends ControllerBase
   }
 
   /**
+   * Displays the leaderboard page for a challenge node.
+   *
+   * Loads a node by its ID, retrieves the top 10 submissions based on the highest field_score,
+   * and returns a render array to display the leaderboard page using a Twig template.
+   *
+   * @param NodeInterface $node
+   *   The node entity.
+   *
+   * @return array
+   *   A render array for the leaderboard page.
+   */
+  public function leaderboard(NodeInterface $node): array
+  {
+    // Initialize variables
+    $label = $node->label();
+    $challenge_id = $node->id();
+    $top10 = [];
+
+
+    // Load all submission nodes with the same challenge ID
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'submission')
+      ->condition('field_challenge_id', $challenge_id)
+      ->sort('field_score', 'DESC')
+      ->range(0, 10)
+      ->accessCheck(TRUE); // Explicitly set access check
+    $nids = $query->execute();
+
+    if (!empty($nids)) {
+      $submissions = \Drupal\node\Entity\Node::loadMultiple($nids);
+      $placement = 1;
+      foreach ($submissions as $index => $submission) {
+        $top10[] = [
+          'field_name' => $submission->get('field_name')->value,
+          'submission_id' => $submission->id(),
+          'field_score' => $submission->get('field_score')->value,
+          'field_email' => $submission->get('field_email')->value,
+          'field_phone' => $submission->get('field_phone')->value,
+          'placement' => $placement,
+        ];
+        $placement++;
+      }
+    }
+
+    // Return the value in a render array using a Twig template
+    return [
+      '#theme' => 'challenge_leaderboard_page',
+      '#title' => $this->t('Leaderboard - Challenge'),
+      '#label' => $label,
+      '#top10' => $top10,
+      '#attached' => [
+        'library' => [
+          'challenge/challenge',
+        ],
+      ],
+    ];
+  }
+
+  /**
    * Formats time from minutes to MM:SS.
    *
    * @param int $minutes
@@ -326,7 +385,7 @@ class ChallengeController extends ControllerBase
    * @return string
    *   The QR code as a data URI.
    */
-  private function qrCode(int $node_id): string
+  private function qrCode(string $node_id): string
   {
     $url = "https://wyciwyg.dev/vote/" . $node_id;
 

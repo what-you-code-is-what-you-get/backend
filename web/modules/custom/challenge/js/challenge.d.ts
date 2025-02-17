@@ -9,6 +9,11 @@ declare function initializeCountdownTimer(): void;
  */
 declare function initializeShowNames(): void;
 /**
+ * Initializes the show Contact functionality.
+ * Adds an event listener to the button to toggle the visibility of elements with the class 'Contact'.
+ */
+declare function initializeShowContact(): void;
+/**
  * Initializes the show placement functionality.
  * Adds an event listener to the button to toggle the visibility of elements with the class 'name'.
  */
@@ -37,6 +42,14 @@ declare function startCountdown(duration: number, display: HTMLSpanElement): voi
  * with the class 'show-names' between "Show Names" and "Hide Names".
  */
 declare function showNames(): void;
+/**
+ * Toggles the 'show' class on all elements with the class 'Contact' and updates the button text.
+ *
+ * This function selects all elements with the class 'Contact' and toggles
+ * the 'show' class on each of them. It also toggles the text of the button
+ * with the class 'show-Contacts' between "Show Contacts" and "Hide Contacts".
+ */
+declare function showContact(): void;
 /**
  * Displays the placement and triggers confetti animations.
  *
