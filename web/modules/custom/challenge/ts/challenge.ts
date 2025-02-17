@@ -33,6 +33,20 @@ function initializeShowNames(): void {
 }
 
 /**
+ * Initializes the show Contact functionality.
+ * Adds an event listener to the button to toggle the visibility of elements with the class 'Contact'.
+ */
+function initializeShowContact(): void {
+  const showContactButton = document.querySelector(
+    "button.show-contact"
+  ) as HTMLButtonElement;
+
+  if (showContactButton) {
+    showContactButton.addEventListener("click", showContact);
+  }
+}
+
+/**
  * Initializes the show placement functionality.
  * Adds an event listener to the button to toggle the visibility of elements with the class 'name'.
  */
@@ -49,6 +63,7 @@ function initializeShowPlacement(): void {
 document.addEventListener("DOMContentLoaded", () => {
   initializeCountdownTimer();
   initializeShowNames();
+  initializeShowContact();
   initializeShowPlacement();
 });
 
@@ -122,6 +137,34 @@ function showNames(): void {
       showNameButton.textContent = "Hide Names";
     } else {
       showNameButton.textContent = "Show Names";
+    }
+  }
+}
+
+/**
+ * Toggles the 'show' class on all elements with the class 'Contact' and updates the button text.
+ *
+ * This function selects all elements with the class 'Contact' and toggles
+ * the 'show' class on each of them. It also toggles the text of the button
+ * with the class 'show-Contacts' between "Show Contacts" and "Hide Contacts".
+ */
+function showContact(): void {
+  const contact: NodeListOf<HTMLElement> =
+    document.querySelectorAll(".contact");
+  const showContactButton = document.querySelector(
+    "button.show-contact"
+  ) as HTMLButtonElement;
+
+  contact.forEach((contact) => {
+    contact.classList.toggle("show");
+  });
+
+  // Toggle the button text
+  if (showContactButton) {
+    if (showContactButton.textContent === "Show contact information") {
+      showContactButton.textContent = "Hide contact information";
+    } else {
+      showContactButton.textContent = "Show contact information";
     }
   }
 }

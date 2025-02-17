@@ -33,3 +33,10 @@ challenge.podium:
     _title: "Challenge podium"
   requirements:
     _permission: "access challenge pages"
+challenge.leaderboard:
+  path: "/challenge/leaderboard/{node}"
+  defaults:
+    _controller: '\Drupal\challenge\Controller\ChallengeController::leaderboard'
+    _title: "Challenge leaderboard"
+  requirements:
+    _permission: "access challenge pages"
