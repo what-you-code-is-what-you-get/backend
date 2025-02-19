@@ -60,3 +60,21 @@
     }
   }
 }
+
+.danger-btn {
+  background-color: transparent;
+  border: 2px dashed var(--bv-red);
+  color: var(--bv-red);
+  cursor: pointer;
+  display: inline-block;
+  font-size: var(--step--2);
+  padding: 8px 12px;
+  transition: all .2s linear;
+
+  &:hover,
+  &:focus {
+    background-color: var(--bv-red);
+    color: white;
+    border-style: solid;
+  }
+}
