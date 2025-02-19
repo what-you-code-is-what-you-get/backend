@@ -1,0 +1,8 @@
+wyciwyg_utils.challenge_submissions_delete:
+  path: '/challenge/submissions/{challenge_id}/delete'
+  defaults:
+    _controller: '\Drupal\challenge\Controller\ChallengeController::deleteSubmissions'
+    _title: 'Delete Challenge Submissions'
+  requirements:
+    _permission: 'delete content' # Ensures only authenticated users can access
+    challenge_id: '\d+'

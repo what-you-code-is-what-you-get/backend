@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeShowNames();
     initializeShowContact();
     initializeShowPlacement();
+    initDeleteSubmissions();
 });
 /**
  * Parses a time string in the format "MM:SS" and converts it to seconds.
@@ -229,5 +230,43 @@ function showPlacement() {
             break;
         }
     }
+}
+function initDeleteSubmissions() {
+    const deleteButtons = document.querySelectorAll('.js-delete-submissions');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', deleteSubmissions);
+    });
+}
+/**
+ * Deletes all submissions for a challenge.
+ *
+ * @param event - The event object.
+ */
+function deleteSubmissions(event) {
+    // Prevent the default form submission
+    event.preventDefault();
+    // Get the challenge ID from the button's data attribute
+    const target = event.target;
+    const challengeId = target.dataset['challengeId'];
+    if (!challengeId || typeof challengeId !== 'string') {
+        console.error('Challenge ID is missing.');
+        return;
+    }
+    if (!confirm('Are you sure you want to delete all submissions and corresponding votes?')) {
+        return;
+    }
+    fetch(`/challenge/submissions/${challengeId}/delete`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({})
+    })
+        .then(response => response.json())
+        .then(data => {
+        alert(data.message);
+        if (data.success) {
+            location.reload();
+        }
+    })
+        .catch(error => console.error('Error:', error));
 }
 //# sourceMappingURL=challenge.js.map

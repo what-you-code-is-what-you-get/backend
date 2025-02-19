@@ -1,3 +1,4 @@
+declare var JSConfetti: any;
 /**
  * Initializes the countdown timer functionality.
  * Adds an event listener to the button to start the countdown.
@@ -63,3 +64,10 @@ declare function showContact(): void;
  * When the first place is shown, the button is hidden.
  */
 declare function showPlacement(): void;
+declare function initDeleteSubmissions(): void;
+/**
+ * Deletes all submissions for a challenge.
+ *
+ * @param event - The event object.
+ */
+declare function deleteSubmissions(event: Event): void;

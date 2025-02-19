@@ -9,6 +9,9 @@ use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\RoundBlockSizeMode;
 use Endroid\QrCode\Writer\PngWriter;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ChallengeController.
@@ -452,5 +455,35 @@ class ChallengeController extends ControllerBase
     }
 
     return $votes;
+  }
+
+  /**
+   * Deletes all submissions and corresponding votes related to a challenge.
+   */
+  public function deleteSubmissions(Request $request, $challenge_id) {
+
+    $storage = \Drupal::entityTypeManager()->getStorage('node');
+    $submissions = $storage->loadByProperties(['type' => 'submission', 'field_challenge_id' => $challenge_id]);
+    $votes = $storage->loadByProperties(['type' => 'vote', 'field_challenge_id' => $challenge_id]);
+    
+    $submission_ids = [];
+
+    foreach ($submissions as $submission) {
+      // Store submission IDs for response message count
+      $submission_ids[] = $submission->id();
+      // Delete submission
+      $submission->delete();
+    }
+
+    foreach ($votes as $vote) {
+      // Delete vote
+      $vote->delete();
+    }
+
+    return new JsonResponse([
+      'message' => 'Submissions deleted successfully.',
+      'deleted_count' => count($submission_ids),
+      'success' => true,
+    ], Response::HTTP_OK);
   }
 }

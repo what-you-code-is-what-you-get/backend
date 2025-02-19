@@ -1,3 +1,6 @@
+// JSConfetti is an external globally available class imported through a CDN so make sure TypeScript knows about it.
+declare var JSConfetti: any;
+
 /**
  * Initializes the countdown timer functionality.
  * Adds an event listener to the button to start the countdown.
@@ -65,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeShowNames();
   initializeShowContact();
   initializeShowPlacement();
+  initDeleteSubmissions();
 });
 
 /**
@@ -268,4 +272,48 @@ function showPlacement(): void {
       break;
     }
   }
+}
+
+function initDeleteSubmissions(): void {
+  const deleteButtons = document.querySelectorAll('.js-delete-submissions');
+  
+  deleteButtons.forEach(button => {
+      button.addEventListener('click', deleteSubmissions);
+  });
+}
+
+/**
+ * Deletes all submissions for a challenge.
+ *
+ * @param event - The event object.
+ */
+function deleteSubmissions(event: Event): void {
+  // Prevent the default form submission
+  event.preventDefault();
+  // Get the challenge ID from the button's data attribute
+  const target = event.target as HTMLButtonElement;
+  const challengeId: string | undefined = target.dataset['challengeId'];
+
+  if (!challengeId || typeof challengeId !== 'string') {
+    console.error('Challenge ID is missing.');
+    return;
+  }
+
+  if(!confirm('Are you sure you want to delete all submissions and corresponding votes?')) {
+    return;
+  }
+  
+  fetch(`/challenge/submissions/${challengeId}/delete`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({})
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert(data.message);
+    if (data.success) {
+      location.reload();
+    }
+  })
+  .catch(error => console.error('Error:', error));
 }
