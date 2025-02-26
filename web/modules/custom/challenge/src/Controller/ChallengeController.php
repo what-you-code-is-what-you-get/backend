@@ -221,6 +221,7 @@ class ChallengeController extends ControllerBase
       '#theme' => 'challenge_votes_page',
       '#title' => $this->t('Votes - Challenge'),
       '#label' => $label,
+      '#challenge_id' => $challenge_id,
       '#voting_results' => $voting_results,
       '#attached' => [
         'library' => [
@@ -483,6 +484,30 @@ class ChallengeController extends ControllerBase
     return new JsonResponse([
       'message' => 'Submissions deleted successfully.',
       'deleted_count' => count($submission_ids),
+      'success' => true,
+    ], Response::HTTP_OK);
+  }
+
+  /**
+   * Deletes all votes related to a challenge.
+   */
+  public function deleteVotes(Request $request, $challenge_id) {
+
+    $storage = \Drupal::entityTypeManager()->getStorage('node');
+    $votes = $storage->loadByProperties(['type' => 'vote', 'field_challenge_id' => $challenge_id]);
+    
+    $vote_ids = [];
+
+    foreach ($votes as $vote) {
+      // Store vote IDs for response message count
+      $vote_ids[] = $vote->id();
+      // Delete vote
+      $vote->delete();
+    }
+
+    return new JsonResponse([
+      'message' => 'Votes deleted successfully.',
+      'deleted_count' => count($vote_ids),
       'success' => true,
     ], Response::HTTP_OK);
   }
