@@ -1,3 +1,4 @@
+{{ attach_library('challenge/leaderboard') }}
 <article class="challenge-leaderboard">
   {% include 'wyciwyg:sdc_back' %}
   <div class="content">
@@ -43,5 +44,9 @@
           </div>
       </div>
     {% endif %}
+    <div class="timer">
+        <p>Reloads in: </p>
+        <span>{{ time }}</span>
+      </div>
   </div>
 </article>
