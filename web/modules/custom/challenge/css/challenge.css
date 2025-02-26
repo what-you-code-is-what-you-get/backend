@@ -390,6 +390,10 @@
       }
     }
   }
+  .timer {
+    display: flex;
+    gap: 5px;
+  }
 }
 
 .challenge-footer {
