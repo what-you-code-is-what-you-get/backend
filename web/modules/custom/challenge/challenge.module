@@ -33,6 +33,7 @@ function challenge_theme(): array
       'variables' => [
         'label' => NULL,
         'voting_results' => NULL,
+        'challenge_id' => NULL,
       ],
     ],
     'challenge_podium_page' => [
