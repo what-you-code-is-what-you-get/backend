@@ -64,10 +64,11 @@ declare function showContact(): void;
  * When the first place is shown, the button is hidden.
  */
 declare function showPlacement(): void;
-declare function initDeleteSubmissions(): void;
 /**
- * Deletes all submissions for a challenge.
- *
- * @param event - The event object.
+ * Initialize delete buttons for submissions and votes.
  */
-declare function deleteSubmissions(event: Event): void;
+declare function initDeleteButtons(): void;
+/**
+ * Handles deletion of submissions or votes.
+ */
+declare function deleteEntities(event: Event): void;

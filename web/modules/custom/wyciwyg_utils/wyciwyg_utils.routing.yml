@@ -6,3 +6,12 @@ wyciwyg_utils.challenge_submissions_delete:
   requirements:
     _permission: 'delete content' # Ensures only authenticated users can access
     challenge_id: '\d+'
+
+wyciwyg_utils.challenge_votes_delete:
+  path: '/challenge/votes/{challenge_id}/delete'
+  defaults:
+    _controller: '\Drupal\challenge\Controller\ChallengeController::deleteVotes'
+    _title: 'Delete Challenge Votes'
+  requirements:
+    _permission: 'delete content' # Ensures only authenticated users can access
+    challenge_id: '\d+'

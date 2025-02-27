@@ -49,7 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeShowNames();
     initializeShowContact();
     initializeShowPlacement();
-    initDeleteSubmissions();
+    // Initialize all delete buttons
+    initDeleteButtons();
 });
 /**
  * Parses a time string in the format "MM:SS" and converts it to seconds.
@@ -231,31 +232,30 @@ function showPlacement() {
         }
     }
 }
-function initDeleteSubmissions() {
-    const deleteButtons = document.querySelectorAll('.js-delete-submissions');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', deleteSubmissions);
+/**
+ * Initialize delete buttons for submissions and votes.
+ */
+function initDeleteButtons() {
+    document.querySelectorAll('[data-delete]').forEach(button => {
+        button.addEventListener('click', deleteEntities);
     });
 }
 /**
- * Deletes all submissions for a challenge.
- *
- * @param event - The event object.
+ * Handles deletion of submissions or votes.
  */
-function deleteSubmissions(event) {
-    // Prevent the default form submission
+function deleteEntities(event) {
     event.preventDefault();
-    // Get the challenge ID from the button's data attribute
     const target = event.target;
+    const type = target.dataset['delete']; // 'submissions' or 'votes'
     const challengeId = target.dataset['challengeId'];
-    if (!challengeId || typeof challengeId !== 'string') {
-        console.error('Challenge ID is missing.');
+    if (!type || !challengeId) {
+        console.error('Missing data attributes.');
         return;
     }
-    if (!confirm('Are you sure you want to delete all submissions and corresponding votes?')) {
+    if (!confirm(`Are you sure you want to delete all ${type}?`)) {
         return;
     }
-    fetch(`/challenge/submissions/${challengeId}/delete`, {
+    fetch(`/challenge/${type}/${challengeId}/delete`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({})
@@ -263,10 +263,9 @@ function deleteSubmissions(event) {
         .then(response => response.json())
         .then(data => {
         alert(data.message);
-        if (data.success) {
+        if (data.success)
             location.reload();
-        }
     })
-        .catch(error => console.error('Error:', error));
+        .catch(console.error);
 }
 //# sourceMappingURL=challenge.js.map
