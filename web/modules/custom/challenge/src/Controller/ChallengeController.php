@@ -12,6 +12,7 @@ use Endroid\QrCode\Writer\PngWriter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * Class ChallengeController.
@@ -20,6 +21,13 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ChallengeController extends ControllerBase
 {
+
+  protected $entityTypeManager;
+
+  public function __construct(EntityTypeManagerInterface $entityTypeManager) {
+    $this->entityTypeManager = $entityTypeManager;
+  }
+  
   /**
    * Displays the lobby page for a challenge node.
    *
@@ -461,22 +469,18 @@ class ChallengeController extends ControllerBase
    * Deletes all submissions and corresponding votes related to a challenge.
    */
   public function deleteSubmissions(Request $request, $challenge_id) {
-
-    $storage = \Drupal::entityTypeManager()->getStorage('node');
+    $storage = $this->entityTypeManager->getStorage('node');
     $submissions = $storage->loadByProperties(['type' => 'submission', 'field_challenge_id' => $challenge_id]);
     $votes = $storage->loadByProperties(['type' => 'vote', 'field_challenge_id' => $challenge_id]);
-    
+
     $submission_ids = [];
 
     foreach ($submissions as $submission) {
-      // Store submission IDs for response message count
       $submission_ids[] = $submission->id();
-      // Delete submission
       $submission->delete();
     }
 
     foreach ($votes as $vote) {
-      // Delete vote
       $vote->delete();
     }
 
@@ -484,6 +488,10 @@ class ChallengeController extends ControllerBase
       'message' => 'Submissions deleted successfully.',
       'deleted_count' => count($submission_ids),
       'success' => true,
-    ], Response::HTTP_OK);
+    ], JsonResponse::HTTP_OK);
+  }
+
+  public function add($var1, $var2) {
+    return $var1 + $var2;
   }
 }

@@ -1,0 +1,19 @@
+<phpunit bootstrap="web/core/tests/bootstrap.php"
+         colors="true"
+         stopOnFailure="false"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         beStrictAboutOutputDuringTests="false">
+  
+  <testsuites>
+    <testsuite name="Unit">
+      <directory>web/modules/custom/challenge/tests/src/Unit</directory>
+    </testsuite>
+  </testsuites>
+
+  <php>
+    <env name="SIMPLETEST_BASE_URL" value="http://localhost" />
+    <env name="SIMPLETEST_DB" value="mysql://dbuser:dbpass@localhost/dbname" />
+    <env name="BROWSERTEST_OUTPUT_DIRECTORY" value="/tmp" />
+  </php>
+
+</phpunit>
