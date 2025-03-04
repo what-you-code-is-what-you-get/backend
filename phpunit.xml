@@ -8,12 +8,16 @@
     <testsuite name="Unit">
       <directory>web/modules/custom/challenge/tests/src/Unit</directory>
     </testsuite>
+    <testsuite name="functional">
+      <directory>web/modules/custom/challenge/tests/src/Functional</directory>
+    </testsuite>
   </testsuites>
 
   <php>
-    <env name="SIMPLETEST_BASE_URL" value="http://localhost" />
-    <env name="SIMPLETEST_DB" value="mysql://dbuser:dbpass@localhost/dbname" />
-    <env name="BROWSERTEST_OUTPUT_DIRECTORY" value="/tmp" />
+    <env name="SIMPLETEST_BASE_URL" value="https://wyciwyg-drupal-backend.ddev.site" />
+    <env name="SIMPLETEST_DB" value="mysql://db:db@db/db" />
+    <env name="BROWSERTEST_OUTPUT_DIRECTORY" value="browser" />
   </php>
+
 
 </phpunit>
