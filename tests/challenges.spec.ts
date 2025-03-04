@@ -21,7 +21,7 @@ function getDrushUrl(): Promise<string> {
 }
 
 // Main test
-test('can create challenge and submission', async ({ page }) => {
+test('can create challenge, submission and then delete', async ({ page }) => {
   const loginUrl: string | null = await getDrushUrl(); // Get the login URL
   const url: URL = new URL(loginUrl);
   const baseUrl: string = `${url.protocol}//${url.host}`;
@@ -87,5 +87,16 @@ test('can create challenge and submission', async ({ page }) => {
   // Check if the first div with class "field__item" has the text "Submission for "nid" 
   await expect(page.locator('.field__item').first()).toHaveText(`Submission for ${nid}`);
 
+
+  // Go to the challenge page
+  await page.goto(baseUrl + `/challenge/${nid}`);
+
+  // Click the link with the text "Delete"
+  await page.click('a:has-text("Delete")');
+  await page.waitForTimeout(500);
+
+  // Click the input with type submit and the text "Delete"
+  await page.click('input[type="submit"][value="Delete"]');
+  await page.waitForTimeout(500);
 
 });
