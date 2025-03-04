@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Setup DDEV
+      uses: ddev/github-action-setup-ddev@v1
+    # Install Composer dependencies
+    - run: ddev composer install
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
