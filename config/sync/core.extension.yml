@@ -14,7 +14,6 @@ module:
   config: 0
   contact: 0
   contextual: 0
-  cors_ui: 0
   datetime: 0
   dblog: 0
   devel: 0
@@ -62,11 +61,11 @@ module:
   wyciwyg_utils: 0
   pathauto: 1
   views: 10
-  standard: 1000
+  minimal: 1000
 theme:
   olivero: 0
   claro: 0
   gin: 0
   stable9: 0
   wyciwyg: 0
-profile: standard
+profile: minimal
