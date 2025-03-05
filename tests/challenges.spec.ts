@@ -2,6 +2,13 @@ import { test, expect } from '@playwright/test';
 const { exec } = require('child_process');
 const { chromium } = require('playwright');
 
+test.use({ 
+  browserName: 'chromium',
+  launchOptions: {
+    ignoreHTTPSErrors: true,
+  }
+});
+
 // Function to execute the drush command and get the URL
 function getDrushUrl(): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -24,6 +31,7 @@ function getDrushUrl(): Promise<string> {
 test('can create challenge, submission and then delete', async ({ page }) => {
   const loginUrl: string | null = await getDrushUrl(); // Get the login URL
   const url: URL = new URL(loginUrl);
+  url.protocol = 'https'; // Change the protocol to https
   const baseUrl: string = `${url.protocol}//${url.host}`;
 
   // Step 1: Visit the URL
@@ -63,7 +71,6 @@ test('can create challenge, submission and then delete', async ({ page }) => {
   // Get the ID of the page we just created
   const urlParts = page.url().split('/');
   const nid = urlParts[urlParts.length - 1];
-  console.log(`Node ID: ${nid}`);
 
   // Go to https://wyciwyg-drupal-backend.ddev.site/node/add/submission
   await page.goto(baseUrl + '/node/add/submission');
@@ -82,7 +89,7 @@ test('can create challenge, submission and then delete', async ({ page }) => {
 
   // Click the input with ID gin-sticky-edit-submit
   await page.click('#gin-sticky-edit-submit');
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(500);
 
   // Check if the first div with class "field__item" has the text "Submission for "nid" 
   await expect(page.locator('.field__item').first()).toHaveText(`Submission for ${nid}`);
