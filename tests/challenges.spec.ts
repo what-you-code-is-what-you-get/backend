@@ -38,9 +38,22 @@ test('can create challenge, submission and then delete', async ({ page }) => {
   await page.click('input[type="submit"][value="Add media"]');
   await page.waitForTimeout(200);
 
-  // Click input type checkbox with name media_library_select_form[6]
-  await page.click('input[type="checkbox"][name="media_library_select_form[6]"]');
+  const handle = page.locator('input[type="file"][name="files[upload]"]');
+  await handle.setInputFiles('tests/blank.jpg');
   await page.waitForTimeout(300);
+
+
+  // Get field with label "Alternative text" and fill it with "Alternative text"
+  await page.fill('input[name="media[0][fields][field_media_image][0][alt]"]', 'Alternative text');
+  await page.waitForTimeout(300);
+
+  // Click the button type button with the text Save
+  await page.click('button:has-text("Save")');
+  await page.waitForTimeout(300); 
+
+  // Click input type checkbox with name media_library_select_form[6]
+  //await page.click('input[type="checkbox"][name="media_library_select_form[6]"]');
+  //await page.waitForTimeout(300);
 
   // Click the first of .media-library-select
   await page.click('button.media-library-select');
