@@ -14,7 +14,8 @@ jobs:
       uses: ddev/github-action-setup-ddev@v1
     - run: ddev composer install
     - run: ddev composer dump-autoload
-    - run: ddev drush site-install --existing-config
+    - run: ddev drush site-install
+    - run: ddev drush cim --yes
     - run: ddev drush cr --debug
     - run: ddev drush uli
     - uses: actions/setup-node@v4
