@@ -2,13 +2,6 @@ import { test, expect } from '@playwright/test';
 const { exec } = require('child_process');
 const { chromium } = require('playwright');
 
-test.use({ 
-  browserName: 'chromium',
-  launchOptions: {
-    ignoreHTTPSErrors: true,
-  }
-});
-
 // Function to execute the drush command and get the URL
 function getDrushUrl(): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -31,7 +24,6 @@ function getDrushUrl(): Promise<string> {
 test('can create challenge, submission and then delete', async ({ page }) => {
   const loginUrl: string | null = await getDrushUrl(); // Get the login URL
   const url: URL = new URL(loginUrl);
-  url.protocol = 'https'; // Change the protocol to https
   const baseUrl: string = `${url.protocol}//${url.host}`;
 
   // Step 1: Visit the URL
@@ -48,11 +40,11 @@ test('can create challenge, submission and then delete', async ({ page }) => {
 
   // Click input type checkbox with name media_library_select_form[6]
   await page.click('input[type="checkbox"][name="media_library_select_form[6]"]');
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(300);
 
   // Click the first of .media-library-select
   await page.click('button.media-library-select');
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(300);
 
   // Inside .ck-editor__editable click the first p and type "This is a challenge"
   await page.click('.ck-editor__editable p');
