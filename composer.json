@@ -35,7 +35,9 @@
         "endroid/qr-code": "^6.0"
     },
     "require-dev": {
-        "kint-php/kint": "^6.0"
+        "drupal/core-dev": "^11.1",
+        "kint-php/kint": "^6.0",
+        "phpunit/phpunit": "^10.5"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -50,7 +52,8 @@
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "php-http/discovery": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "tbachert/spi": true
         },
         "sort-packages": true
     },
