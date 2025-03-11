@@ -5,3 +5,7 @@ challenge:
   css:
     theme:
       css/challenge.css: {}
+leaderboard:
+  version: 1.x
+  js:
+    js/leaderboard.js: {}

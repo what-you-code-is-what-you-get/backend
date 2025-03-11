@@ -113,10 +113,6 @@
                 "      composer remove drupal/core-project-message"
             ]
         },
-        "patches": {
-            "drupal/cors_ui": {
-                "fix-missing-void": "https://git.drupalcode.org/project/cors_ui/-/merge_requests/11/diffs.patch"
-            }
-        }
+        "patches": {}
     }
 }

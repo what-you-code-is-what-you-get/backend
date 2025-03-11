@@ -113,11 +113,6 @@
     }
   }
 
-  .footer {
-    margin-top: 3rem;
-    text-align: center;
-  }
-
   .no-submissions {
     text-align: center;
     color: var(--bv-green);
@@ -395,4 +390,13 @@
       }
     }
   }
+  .timer {
+    display: flex;
+    gap: 5px;
+  }
+}
+
+.challenge-footer {
+  margin-top: 3rem;
+  text-align: center;
 }
