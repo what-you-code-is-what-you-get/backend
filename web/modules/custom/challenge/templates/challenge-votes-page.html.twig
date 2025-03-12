@@ -19,10 +19,9 @@
         </div>  
         {% endfor %}
       </div>
+      <div class="challenge-footer">
+        <button data-delete="votes" data-challenge-id="{{ challenge_id }}" class="danger-btn">Delete all votes</button>
+      </div>
     {% endif %}
-
-    <div class="challenge-footer">
-      <button data-delete="votes" data-challenge-id="{{ challenge_id }}" class="danger-btn">Delete all votes</button>
-    </div>
   </div>
 </article>
