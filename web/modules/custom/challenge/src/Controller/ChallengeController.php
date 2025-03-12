@@ -166,6 +166,9 @@ class ChallengeController extends ControllerBase
           'challenge/challenge',
         ],
       ],
+      '#cache' => [
+        'tags'=> ['node_list'],
+      ],
     ];
   }
 
@@ -227,6 +230,9 @@ class ChallengeController extends ControllerBase
         'library' => [
           'challenge/challenge',
         ],
+      ],
+      '#cache' => [
+        'tags'=> ['node_list'],
       ],
     ];
   }
@@ -298,6 +304,9 @@ class ChallengeController extends ControllerBase
           'challenge/challenge',
         ],
       ],
+      '#cache' => [
+        'tags'=> ['node_list'],
+      ],
     ];
   }
 
@@ -356,6 +365,9 @@ class ChallengeController extends ControllerBase
         'library' => [
           'challenge/challenge',
         ],
+      ],
+      '#cache' => [
+        'tags'=> ['node_list'],
       ],
     ];
   }
