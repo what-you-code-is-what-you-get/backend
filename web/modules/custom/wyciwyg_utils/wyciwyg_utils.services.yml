@@ -1,0 +1,4 @@
+services:
+  wyciwyg_utils.game_pin_service:
+    class: 'Drupal\wyciwyg_utils\GamePinService'
+    arguments: ['@entity_type.manager']

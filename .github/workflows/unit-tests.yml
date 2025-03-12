@@ -1,0 +1,21 @@
+name: Unit tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup DDEV
+      uses: ddev/github-action-setup-ddev@v1
+    - run: ddev composer install
+    - run: ddev composer dump-autoload
+    - run: ddev drush site-install --existing-config
+    - run: ddev drush cr
+    - run: ddev drush uli
+    - name: Run Unit tests
+      run: ddev php ./vendor/bin/phpunit --testsuite Unit
