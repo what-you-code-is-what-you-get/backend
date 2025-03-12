@@ -3,6 +3,8 @@
 namespace Drupal\Tests\challenge\Unit;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+
 use Drupal\challenge\Controller\ChallengeController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,19 +19,31 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 class ChallengeControllerTest extends TestCase {
 
-    public function testDeleteSubmissions() {
-        // Mock the Request object
-        $request = $this->createMock(Request::class);
-      
-        // Mock the NodeStorage object
-        $node_storage = $this->createMock(NodeStorageInterface::class);
-      
-        // Mock the EntityTypeManager object
-        /** @var EntityTypeManagerInterface|MockObject $entity_type_manager */
-        $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
-        $entity_type_manager->method('getStorage')
-          ->willReturn($node_storage);
-      
+    protected Request|MockObject $request;
+    protected NodeStorageInterface|MockObject $node_storage;
+    protected EntityTypeManagerInterface|MockObject $entity_type_manager;
+    protected ChallengeController $controller;
+
+    /**
+     * {@inheritdoc}
+     * @return void
+     */
+    protected function setUp(): void {
+        parent::setUp();
+
+        $this->request = $this->createMock(Request::class);
+        $this->node_storage = $this->createMock(NodeStorageInterface::class);
+        $this->entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
+
+        $this->entity_type_manager->method('getStorage')
+            ->willReturn($this->node_storage);
+
+        $this->controller = new ChallengeController($this->entity_type_manager);
+    }
+
+    #[Test]
+    public function it_can_delete_submissions() {
+        
         // Mock the submissions and votes
         $submission = $this->createMock('Drupal\node\Entity\Node');
         $submission->method('id')
@@ -37,46 +51,71 @@ class ChallengeControllerTest extends TestCase {
         $vote = $this->createMock('Drupal\node\Entity\Node');
       
         // Mock the loadByProperties method
-        $node_storage->method('loadByProperties')
+        $this->node_storage->method('loadByProperties')
           ->willReturnMap([
             [['type' => 'submission', 'field_challenge_id' => 1], [$submission]],
             [['type' => 'vote', 'field_challenge_id' => 1], [$vote]],
           ]);
       
-        // Mock the delete method
+        // Mock the delete method and expect it to be called once
         $submission->expects($this->once())
           ->method('delete');
         $vote->expects($this->once())
           ->method('delete');
       
         // Create the controller and pass the entity type manager
-        $controller = new ChallengeController($entity_type_manager);
+        $controller = new ChallengeController($this->entity_type_manager);
       
         // Call the deleteSubmissions method
-        $response = $controller->deleteSubmissions($request, 1);
+        $response = $controller->deleteSubmissions($this->request, 1);
       
         // Assert the response
-        $this->assertInstanceOf(JsonResponse::class, $response);
-        $data = json_decode($response->getContent(), true);
-        $this->assertEquals('Submissions deleted successfully.', $data['message']);
-        $this->assertEquals(1, $data['deleted_count']);
-        $this->assertTrue($data['success']);
+        $this->assertJsonResponse($response, 'Submissions deleted successfully.');
+    }
+
+    #[Test]
+    function it_can_delete_votes()
+    {
+        
+        // Mock the submissions and votes
+        $submission = $this->createMock('Drupal\node\Entity\Node');
+        $submission->method('id')
+          ->willReturn(1);
+        $vote = $this->createMock('Drupal\node\Entity\Node');
+      
+        // Mock the loadByProperties method
+        $this->node_storage->method('loadByProperties')
+          ->willReturnMap([
+            [['type' => 'submission', 'field_challenge_id' => 1], [$submission]],
+            [['type' => 'vote', 'field_challenge_id' => 1], [$vote]],
+          ]);
+      
+        // Mock the delete method and expect it to be called once
+        $vote->expects($this->once())
+          ->method('delete');
+      
+        // Create the controller and pass the entity type manager
+        $controller = new ChallengeController($this->entity_type_manager);
+      
+        // Call the deleteSubmissions method
+        $response = $controller->deleteVotes($this->request, 1);
+      
+        // Assert the response
+        $this->assertJsonResponse($response, 'Votes deleted successfully.');
     }
 
     /**
-     * This is an example test for the add method, which is also just a test method.
+     * Asserts that the response is a JSON response with the expected message.
+     * @param JsonResponse $response
+     * @param string $expectedMessage
+     * @return void
      */
-    public function testAdd() {
-        // Create the controller without any dependencies
-        /** @var EntityTypeManagerInterface|MockObject $entity_type_manager */
-        $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
-        $controller = new ChallengeController($entity_type_manager);
-
-        // Call the add method
-        $result = $controller->add(1, 2);
-
-        // Assert the result
-        $this->assertEquals(3, $result);
-    }
+    private function assertJsonResponse(JsonResponse $response, string $expectedMessage): void {
+        $this->assertInstanceOf(JsonResponse::class, $response);
+        $data = json_decode($response->getContent(), true);
+        $this->assertEquals($expectedMessage, $data['message']);
+        $this->assertSame(1, $data['deleted_count']);
+        $this->assertTrue($data['success']);
+    }    
 
 }

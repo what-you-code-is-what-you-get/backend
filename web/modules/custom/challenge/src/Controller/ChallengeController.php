@@ -492,24 +492,17 @@ class ChallengeController extends ControllerBase
     ], JsonResponse::HTTP_OK);
   }
 
-  public function add($var1, $var2) {
-    return $var1 + $var2;
-  }
-
   /**
    * Deletes all votes related to a challenge.
    */
   public function deleteVotes(Request $request, $challenge_id) {
-
-    $storage = \Drupal::entityTypeManager()->getStorage('node');
+    $storage = $this->entityTypeManager->getStorage('node');
     $votes = $storage->loadByProperties(['type' => 'vote', 'field_challenge_id' => $challenge_id]);
     
     $vote_ids = [];
 
     foreach ($votes as $vote) {
-      // Store vote IDs for response message count
       $vote_ids[] = $vote->id();
-      // Delete vote
       $vote->delete();
     }
 
