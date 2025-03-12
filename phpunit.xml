@@ -7,9 +7,7 @@
   <testsuites>
     <testsuite name="Unit">
       <directory>web/modules/custom/challenge/tests/src/Unit</directory>
-    </testsuite>
-    <testsuite name="functional">
-      <directory>web/modules/custom/challenge/tests/src/Functional</directory>
+      <directory>web/modules/custom/wyciwyg_utils/tests/src/Unit</directory>
     </testsuite>
   </testsuites>
 

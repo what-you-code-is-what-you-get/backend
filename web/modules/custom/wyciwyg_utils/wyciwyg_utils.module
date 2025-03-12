@@ -90,35 +90,7 @@ function wyciwyg_utils_node_presave(Drupal\Core\Entity\EntityInterface $entity) 
  *   A unique uppercase alphanumeric game PIN.
  */
 function generate_unique_game_pin() {
-  do {
-    $pin = strtoupper(substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 6));
-  } while (game_pin_exists($pin)); // Ensure uniqueness
-
-  return $pin;
-}
-
-/**
- * Check if a game PIN already exists in the database. Will exclude the current node if provided.
- *
- * @param string $pin
- *   The generated PIN to check.
- *
- * @return bool
- *   TRUE if the PIN already exists, FALSE otherwise.
- */
-function game_pin_exists($pin, $exclude_nid = NULL) {
-  $query = \Drupal::entityQuery('node')
-    ->condition('type', 'challenge')
-    ->condition('field_game_pin', $pin)
-    ->accessCheck(FALSE) // Explicitly disable access check to avoid QueryException
-    ->range(0, 1);
-
-  // If we are editing an existing node, exclude it from the query.
-  if ($exclude_nid) {
-    $query->condition('nid', $exclude_nid, '!=');
-  }
-
-  return (bool) $query->execute();
+  return \Drupal::service('wyciwyg_utils.game_pin_service')->generateUniqueGamePin();
 }
 
 /**
