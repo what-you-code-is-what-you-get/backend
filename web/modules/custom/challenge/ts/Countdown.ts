@@ -2,14 +2,17 @@ class Countdown extends EventTarget {
   time: string;
   seconds: number;
   minutes: number;
+  initialTime: number;
   interval: ReturnType<typeof setInterval> | null;
 
-  constructor() {
+  constructor({initialTime}: {initialTime: number}) {
     super(); // Call the parent constructor (EventTarget)
     this.time = '00:00';
     this.seconds = 0;
     this.minutes = 0;
     this.interval = null;
+    this.initialTime = initialTime;
+    this.setInitialTime(initialTime);
   }
 
   setInitialTime(seconds: number) {
@@ -42,9 +45,13 @@ class Countdown extends EventTarget {
     }
   }
 
+  reset() {
+    this.pause();
+    this.setInitialTime(this.initialTime);
+  }
+
   updateTime() {
     this.time = `${this.minutes}:${this.seconds < 10 ? '0' : ''}${this.seconds}`;
-    console.log(this.time);
 
     // Dispatch a custom event to notify the update
     const event = new CustomEvent('update-timer', {

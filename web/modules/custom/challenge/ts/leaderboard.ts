@@ -1,13 +1,24 @@
-setInterval(function () {
-  location.reload();
-}, 61000); // 61000 milliseconds = 1 minute and 1 second
+import Countdown from "./Countdown.js";
 
 function initializeCountdownTimerLeaderboard(): void {
-  const timerSpan = document.querySelector(".timer span") as HTMLSpanElement;
+  const timerSpan = document.querySelector("*[data-timer]") as HTMLSpanElement;
 
-  if (timerSpan) {
-    startCountdown(parseTime("1"), timerSpan);
+  if(!timerSpan) {
+    return;
   }
+
+  const countdown = new Countdown({ initialTime: 60 });
+  countdown.start();
+
+  countdown.addEventListener('update-timer', (e: Event) => {
+    const customEvent = e as CustomEvent;
+    timerSpan.innerText = customEvent.detail.time; // Update the foo element with the new time
+
+    if(customEvent.detail.time === '0:00') {
+      location.reload();
+    }
+  });
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {

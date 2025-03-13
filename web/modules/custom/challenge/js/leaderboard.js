@@ -1,12 +1,18 @@
-"use strict";
-setInterval(function () {
-    location.reload();
-}, 61000); // 61000 milliseconds = 1 minute and 1 second
+import Countdown from "./Countdown.js";
 function initializeCountdownTimerLeaderboard() {
-    const timerSpan = document.querySelector(".timer span");
-    if (timerSpan) {
-        startCountdown(parseTime("1"), timerSpan);
+    const timerSpan = document.querySelector("*[data-timer]");
+    if (!timerSpan) {
+        return;
     }
+    const countdown = new Countdown({ initialTime: 60 });
+    countdown.start();
+    countdown.addEventListener('update-timer', (e) => {
+        const customEvent = e;
+        timerSpan.innerText = customEvent.detail.time; // Update the foo element with the new time
+        if (customEvent.detail.time === '0:00') {
+            location.reload();
+        }
+    });
 }
 document.addEventListener("DOMContentLoaded", () => {
     initializeCountdownTimerLeaderboard();
