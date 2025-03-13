@@ -1,1 +1,1 @@
-declare function initializeCountdownTimerLeaderboard(): void;
+export {};

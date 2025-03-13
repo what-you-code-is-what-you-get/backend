@@ -9,10 +9,12 @@
       {# <div class="player-list">
         <p>Players</p>
       </div> #}
-      <div class="timer">
+      <div class="timer" data-state="paused">
         <p>Timer</p>
-        <span>{{ time }}</span>
-        <button>Start</button>
+        <span data-timer="{{ time }}">{{ time }}</span>
+        <button data-timer-button="start">Start</button>
+        <button data-timer-button="pause">Pause</button>
+        <button data-timer-button="reset" class="reset-button">Reset</button>
       </div>
       <div class="gamepin">
         <span>{{ game_pin }}</span>
