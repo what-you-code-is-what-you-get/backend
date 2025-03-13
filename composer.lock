@@ -4,8 +4,34 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b908dc637ca92cf36937964b413abe65",
+    "content-hash": "73cbe4636e6f1f7a8b2531bafca38832",
     "packages": [
+        {
+            "name": "andeersg/site_checker_client",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/andeersg/site-checker-client.git",
+                "reference": "a32807a95b3d482788c7918d5e15e6b4b9159a5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/andeersg%2Fsite-checker-client/repository/archive.zip?sha=a32807a95b3d482788c7918d5e15e6b4b9159a5b",
+                "reference": "a32807a95b3d482788c7918d5e15e6b4b9159a5b",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Report drupal information",
+            "support": {
+                "issues": "https://gitlab.com/andeersg/site-checker-client/-/issues",
+                "source": "https://gitlab.com/andeersg/site-checker-client/-/tree/1.0.6"
+            },
+            "time": "2024-10-04T12:12:09+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.2.0",
