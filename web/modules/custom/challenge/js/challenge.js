@@ -1,18 +1,40 @@
-"use strict";
+import Countdown from './Countdown.js';
 /**
  * Initializes the countdown timer functionality.
  * Adds an event listener to the button to start the countdown.
  */
 function initializeCountdownTimer() {
-    const timerButton = document.querySelector(".timer button");
-    const timerSpan = document.querySelector(".timer span");
-    if (timerButton && timerSpan) {
-        // Get the initial value from the timer span
-        const initialTime = parseTime(timerSpan.textContent || "00:00");
-        timerButton.addEventListener("click", () => {
-            startCountdown(initialTime, timerSpan);
-        });
+    const timerButtons = document.querySelectorAll("button[data-timer-button]");
+    const timerElement = document.querySelector("*[data-timer]");
+    if (!timerElement) {
+        return;
     }
+    // Create a new Countdown instance with the initial time
+    const countdown = new Countdown({
+        initialTime: parseTime(timerElement.textContent || "00:00")
+    });
+    // Listen for the custom 'update-timer' event and update the foo element's innerText
+    countdown.addEventListener('update-timer', (e) => {
+        const customEvent = e;
+        timerElement.innerText = customEvent.detail.time; // Update the foo element with the new time
+    });
+    timerButtons.forEach((button) => {
+        const buttonType = button.dataset['timerButton'];
+        button.addEventListener("click", () => {
+            if (buttonType === 'start') {
+                countdown.start();
+            }
+            if (buttonType === 'pause') {
+                countdown.pause();
+            }
+            if (buttonType === 'reset') {
+                countdown.reset();
+            }
+            if (button.parentElement) {
+                button.parentElement.dataset['state'] = countdown.state();
+            }
+        });
+    });
 }
 /**
  * Initializes the show names functionality.
@@ -65,33 +87,6 @@ function parseTime(timeString) {
     const validMinutes = minutes !== null && minutes !== void 0 ? minutes : 0;
     const validSeconds = seconds !== null && seconds !== void 0 ? seconds : 0;
     return validMinutes * 60 + validSeconds;
-}
-/**
- * Starts a countdown timer and updates the display element with the remaining time.
- * When the countdown reaches zero, it displays "00:00" and adds the "show" class
- * to the element with the class "display-time-up".
- *
- * @param duration - The duration of the countdown in seconds.
- * @param display - The HTML element to update with the remaining time.
- */
-function startCountdown(duration, display) {
-    let timer = duration;
-    const interval = setInterval(() => {
-        const minutes = Math.floor(timer / 60)
-            .toString()
-            .padStart(2, "0");
-        const seconds = (timer % 60).toString().padStart(2, "0");
-        display.textContent = `${minutes}:${seconds}`;
-        if (--timer < 0) {
-            clearInterval(interval);
-            display.textContent = "00:00";
-            // Find the element with the class .display-time-up and add the class .show to it
-            const timeUpElement = document.querySelector(".display-time-up");
-            if (timeUpElement) {
-                timeUpElement.classList.add("show");
-            }
-        }
-    }, 1000);
 }
 /**
  * Toggles the 'show' class on all elements with the class 'name' and updates the button text.
