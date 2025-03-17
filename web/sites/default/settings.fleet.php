@@ -26,3 +26,5 @@ $settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
 $config['rest_api_authentication.settings']['api_token'] = getenv('REST_API_TOKEN');
 
 $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/services.yml';
+
+$config['site_checker_client.settings']['token'] = getenv('SITE_CHECKER_CLIENT_TOKEN');
